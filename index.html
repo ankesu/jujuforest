@@ -96,13 +96,9 @@
         .blog-cards .blog-content p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .blog-cards .blog-content h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* 卡片左上角：分类徽章 + 期号角标（同排，右上角留白不挡图） */
-        .blog-cards .cate-no-row {
-            position: absolute; top: 12px; left: 12px; z-index: 2;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .blog-cards .cate-no-row .category { position: static; top: auto; left: auto; }
+        /* 卡片期号角标（左下角，不碰分类徽章） */
         .blog-cards .card-no {
+            position: absolute; bottom: 14px; left: 14px; z-index: 2;
             display: inline-flex; align-items: center;
             background: rgba(15, 15, 30, 0.55);
             color: #fff; font-size: 12px; font-weight: 700;
@@ -687,10 +683,8 @@ function makeCard(a,flip){
   var dp=a.date.split(' ');
   var imgBlock=
       '<div class="blog-with-cate'+(flip?' order-lg-2 order-1':'')+'">'+
-        '<div class="cate-no-row">'+
-          '<div class="category">'+esc(a.badge)+'</div>'+
-          '<span class="card-no">'+a.id.replace('a','No.')+'</span>'+
-        '</div>'+
+        '<div class="category">'+esc(a.badge)+'</div>'+
+        '<span class="card-no">'+a.id.replace('a','No.')+'</span>'+
         '<img class="blog-img nebo '+(flip?'nebo--tr':'nebo--br')+'" src="'+hengka(a)+'" alt="cover" loading="lazy">'+
         '<div class="learn-more"><a href="javascript:void(0)"><img src="dist/images/arrow-primary.svg" alt="arrow"></a></div>'+
       '</div>';
