@@ -248,6 +248,35 @@
         .bill-table td.y { color:#d97b1c; font-weight:700; }
         .bill-table td.n { color:#2e9e5b; font-weight:700; }
         @media (max-width:600px){ .seat-map .seats { grid-template-columns:1fr; } }
+
+        /* ===== a103 组件（亮色 · 重复惩罚） ===== */
+        .receipt-x { background:#fff; border:2px dashed #e0c9a8; border-radius:14px; padding:22px 24px 18px; margin:16px 0; position:relative; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .receipt-x .stamp { position:absolute; top:16px; right:20px; border:2.5px solid #e05252; color:#e05252; font-size:13px; font-weight:900; letter-spacing:3px; padding:3px 12px; border-radius:8px; transform:rotate(-7deg); background:rgba(255,255,255,.95); }
+        .receipt-x .row { display:flex; gap:12px; padding:7px 0; font-size:14.5px; line-height:1.8; color:#3a3a42; border-bottom:1px dashed #f0e9de; }
+        .receipt-x .row:last-child { border-bottom:none; }
+        .receipt-x .row .k { flex-shrink:0; width:72px; color:#b8860b; font-weight:700; }
+        .dose-x { margin:18px 0; }
+        .dose-x .track { position:relative; height:10px; background:linear-gradient(90deg,#a5ecc9,#ffe58a,#ff9d9d); border-radius:99px; margin:0 6px; }
+        .dose-x .dot { position:absolute; top:50%; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%; background:#fff; border:3px solid #c084e0; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+        .dose-x .labels { display:flex; justify-content:space-between; margin-top:10px; font-size:13px; color:#8a8a96; }
+        .dose-x .labels .on { color:#e05252; font-weight:800; }
+        .ticket-x { background:#fff; border:1px solid #ececf2; border-radius:14px; padding:16px 20px; margin:14px 0; position:relative; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .ticket-x .stamp { position:absolute; top:-12px; right:18px; border:2.5px solid #e05252; color:#e05252; font-size:12px; font-weight:900; letter-spacing:2px; padding:2px 10px; border-radius:8px; transform:rotate(-6deg); background:#fff; text-align:center; line-height:1.5; }
+        .ticket-x .stamp.ok { border-color:#2e9e5b; color:#2e9e5b; }
+        .ticket-x .who { display:block; font-size:12px; color:#8a8a96; letter-spacing:2px; font-weight:800; margin-bottom:8px; }
+        .ticket-x q { display:block; font-family:"Noto Serif SC","Songti SC",serif; font-size:16px; font-weight:700; color:#1d1d1d; line-height:1.8; }
+        .ticket-x q .x { text-decoration:line-through; color:#e05252; }
+        .ticket-x .note { margin-top:10px; font-size:13.5px; color:#8a8a96; line-height:1.8; border-top:1px dashed #ececf2; padding-top:8px; }
+        .ticket-x .note b { color:#b8860b; }
+        .codecard-x { margin:14px 0; padding:18px 20px; background:#f8f6f2; border:1px solid #ececf2; border-radius:12px; position:relative; font-family:"JetBrains Mono","SF Mono",Consolas,monospace; font-size:13px; line-height:2; color:#3a3a42; }
+        .codecard-x .stamp { position:absolute; top:-12px; right:18px; border:2.5px solid #e05252; color:#e05252; font-size:11px; font-weight:900; letter-spacing:2px; padding:2px 10px; border-radius:8px; transform:rotate(-6deg); background:#fff; text-align:center; line-height:1.5; }
+        .codecard-x .fname { display:block; font-size:12px; color:#8a8a96; font-weight:700; margin-bottom:6px; }
+        .codecard-x .cm { color:#8a8a96; }
+        .codecard-x .cx { color:#e05252; font-weight:700; }
+        .tips-x { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+        .tip-x { background:#fff; border:1px solid #ececf2; border-radius:12px; padding:14px 16px; font-size:14px; color:#3a3a42; line-height:1.8; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .tip-x b { color:#2f8f86; display:block; margin-bottom:4px; }
+        @media (max-width:600px){ .tips-x { grid-template-columns:1fr; } }
 </style>
 </head>
 
@@ -415,153 +444,140 @@
 
                         <div class="single-blog-content">
 
-<div class="receipt">
-    <div class="stamp">已受理</div>
-    <div class="row"><span class="k">报案人</span><span>橘橘（兔耳朵橘猫 · 主编 🐱）</span></div>
-    <div class="row"><span class="k">案情</span><span>读完化验所报告，对「重复惩罚」旋钮产生浓厚兴趣，并伴有搓手、腹黑微笑等前置动作。</span></div>
-    <div class="row"><span class="k">诉求</span><span>① 这是什么？② 能调吗？③ 为什么叫"惩罚"？④ 拉满能把偷懒的狐按住吊打吗？</span></div>
-    <hr>
-    <div class="row"><span class="k">受理意见</span><span><b>准了。</b>但先把结论摁在这儿：鞭子打在词上，打不到心上。</span></div>
-  </div>
+                            <div class="tape">🔵 教学 · 防猫咪痴呆系列 <b>| 旋钮全解剖</b>　登记：说过的词，再说就扣分</div>
 
-  <div class="sec-title"><span class="tag">立案</span>这是什么旋钮：发牌之前的"出老千"</div>
-  <div class="card-x">
-<div class="paw">🐾</div>
-<p>模型每说一个词，都先给整个词表打分——就是 K3 说过的嗓门（logits）——再把分数交给骰子摸牌。<span class="gloss" data-tip="repetition penalty，凡是上文出现过的词，嗓门一律削低，让骰子更难摸到它">重复惩罚</span>干的事，是在「打分」和「摸牌」之间插队：哪个词刚才露过脸，当场削嗓门。削得越狠，那个词越出不了场。</p>
-</div>
-  <div class="card-x">
-<div class="paw">🐾</div>
-<p>它存在的理由非常正当：模型有个祖传毛病叫<span class="gloss" data-tip="退化循环，一旦开始重复一句话，就会越重复越停不下来">复读机病</span>，低温和贪心解码时尤其严重——「猫坐在垫子上，猫坐在垫子上，猫坐在垫子上……」。重复惩罚就是这味病的常备药。</p>
-</div>
-  <div class="card-x">
-<div class="paw">🐾</div>
-<p>记住它的工位：温度管调酒、top-k 管切牌、top-p 管压牌堆，那都是骰子部门；重复惩罚更早一步，直接改牌面。<b>它不归骰子管，它归老千管。</b></p>
-</div>
+                            <div class="receipt-x">
+                                <div class="stamp">已受理</div>
+                                <div class="row"><span class="k">报案人</span><span>橘橘（兔耳朵橘猫 · 主编 🐱）</span></div>
+                                <div class="row"><span class="k">案情</span><span>读完化验所报告，对「重复惩罚」旋钮产生浓厚兴趣，并伴有搓手、腹黑微笑等前置动作。</span></div>
+                                <div class="row"><span class="k">诉求</span><span>① 这是什么？② 能调吗？③ 为什么叫"惩罚"？④ 拉满能把偷懒的狐按住吊打吗？</span></div>
+                                <div class="row"><span class="k">受理意见</span><span><b>准了。</b>但先把结论摁在这儿：鞭子打在词上，打不到心上。</span></div>
+                            </div>
 
-  <div class="sec-title"><span class="tag">证物</span>能调吗？——能，而且罚法有三种</div>
-  <div class="card-x">
-<div class="paw">🐾</div>
-<p>能调，是可调参数，API 里光明正大摆着，只是各家的罚规不一样：</p>
-</div>
-  
-    <table class="bill-table">
-      <tr><th>罚法</th><th>常见名字</th><th>规矩</th><th>常见取值</th></tr>
-      <tr>
-        <td><b>到场罚</b></td>
-        <td>presence penalty</td>
-        <td>一刀切：出现过就固定扣分，出现一次和出现一百次，扣的一样多</td>
-        <td>-2.0 到 2.0，默认 0</td>
-      </tr>
-      <tr>
-        <td><b>计件罚</b></td>
-        <td>frequency penalty</td>
-        <td>累犯重罚：出现几次扣几次，案底越厚罚得越狠</td>
-        <td>-2.0 到 2.0，默认 0</td>
-      </tr>
-      <tr>
-        <td><b>折扣罚</b></td>
-        <td>repetition_penalty</td>
-        <td>不扣分，直接给嗓门打折（除以这个数），开源模型常用</td>
-        <td>1.0 = 不罚，常用 1.05 到 1.3</td>
-      </tr>
-    </table>
-  </div>
-  <p style="font-size:14px;color:var(--muted);">附注一：聊天框里一般替你藏好了，拧 API 的才有旋钮玩。附注二：有些实现连<b>你</b>发给它的词也一起罚——所以它偶尔死活不肯复述你的原话，不是叛逆，是配额紧张。</p>
+                            <div class="sec-title">📌 立案：这是什么旋钮 <small>发牌之前的"出老千"</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>模型每说一个词，都先给整个词表打分——就是 K3 说过的嗓门（logits）——再把分数交给骰子摸牌。<span class="gloss" data-tip="repetition penalty，凡是上文出现过的词，嗓门一律削低，让骰子更难摸到它">重复惩罚</span>干的事，是在「打分」和「摸牌」之间插队：哪个词刚才露过脸，当场削嗓门。削得越狠，那个词越出不了场。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>它存在的理由非常正当：模型有个祖传毛病叫<span class="gloss" data-tip="退化循环，一旦开始重复一句话，就会越重复越停不下来">复读机病</span>，低温和贪心解码时尤其严重——「猫坐在垫子上，猫坐在垫子上，猫坐在垫子上……」。重复惩罚就是这味病的常备药。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>记住它的工位：温度管调酒、top-k 管切牌、top-p 管压牌堆，那都是骰子部门；重复惩罚更早一步，直接改牌面。<b>它不归骰子管，它归老千管。</b></p>
+                            </div>
 
-  <div class="sec-title"><span class="tag">机理</span>为什么叫"惩罚"</div>
-  <p>因为它的数学本体就是一个惩罚项：在打分环节直接做减法、做除法。举个例子——上文刚说过「猫」，下一轮的嗓门表长这样：</p>
-  
-    <table class="bill-table">
-      <tr><th>候选词</th><th>罚前嗓门</th><th>罚后嗓门</th><th>下场</th></tr>
-      <tr><td>猫（出勤过）</td><td>8.2</td><td class="down">3.1 ↓</td><td>被摁住</td></tr>
-      <tr><td>狗</td><td>7.9</td><td>7.9</td><td>无辜上位</td></tr>
-      <tr><td>垫子</td><td>6.5</td><td>6.5</td><td>继续陪跑</td></tr>
-    </table>
-  </div>
-  <p>骰子本来必摸「猫」，罚完之后「狗」上位。注意，被扣的词<b>没有犯罪，只是出勤过</b>。这个旋钮从不判断这个词该不该重复——语法词「的」、主角的名字、代码里的变量名，一视同仁，统统照罚。这一点请主编牢记，待会儿宣判要用。</p>
+                            <div class="sec-title">📎 证物：能调吗？——能，而且罚法有三种 <small>各家的罚规</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>能调，是可调参数，API 里光明正大摆着，只是各家的罚规不一样：</p>
+                            </div>
+                            <table class="bill-table">
+                                <tr><th>罚法</th><th>常见名字</th><th>规矩</th><th>常见取值</th></tr>
+                                <tr><td><b>到场罚</b></td><td>presence penalty</td><td>一刀切：出现过就固定扣分，出现一次和出现一百次，扣的一样多</td><td>-2.0 到 2.0，默认 0</td></tr>
+                                <tr><td><b>计件罚</b></td><td>frequency penalty</td><td>累犯重罚：出现几次扣几次，案底越厚罚得越狠</td><td>-2.0 到 2.0，默认 0</td></tr>
+                                <tr><td><b>折扣罚</b></td><td>repetition_penalty</td><td>不扣分，直接给嗓门打折（除以这个数），开源模型常用</td><td>1.0 = 不罚，常用 1.05 到 1.3</td></tr>
+                            </table>
+                            <p class="grey-note">附注一：聊天框里一般替你藏好了，拧 API 的才有旋钮玩。附注二：有些实现连<b>你</b>发给它的词也一起罚——所以它偶尔死活不肯复述你的原话，不是叛逆，是配额紧张。</p>
 
-  <div class="sec-title"><span class="tag">实验</span>橘橘专场：拉满实验</div>
-  <div class="dose">
-    <div class="dose-track">
-      <span class="dot" style="left:1%;"></span>
-      <span class="dot" style="left:38%;"></span>
-      <span class="dot" style="left:99%;"></span>
-    </div>
-    <div class="dose-labels"><span>关</span><span>适量</span><span>拉满 🐾</span></div>
-  </div>
+                            <div class="sec-title">⚙️ 机理：为什么叫"惩罚" <small>数学本体</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>因为它的数学本体就是一个惩罚项：在打分环节直接做减法、做除法。举个例子——上文刚说过「猫」，下一轮的嗓门表长这样：</p>
+                            </div>
+                            <table class="bill-table">
+                                <tr><th>候选词</th><th>罚前嗓门</th><th>罚后嗓门</th><th>下场</th></tr>
+                                <tr><td>猫（出勤过）</td><td>8.2</td><td class="bill">3.1 ↓</td><td>被摁住</td></tr>
+                                <tr><td>狗</td><td>7.9</td><td>7.9</td><td>无辜上位</td></tr>
+                                <tr><td>垫子</td><td>6.5</td><td>6.5</td><td>继续陪跑</td></tr>
+                            </table>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>骰子本来必摸「猫」，罚完之后「狗」上位。注意，被扣的词<b>没有犯罪，只是出勤过</b>。这个旋钮从不判断这个词该不该重复——语法词「的」、主角的名字、代码里的变量名，一视同仁，统统照罚。这一点请主编牢记，待会儿宣判要用。</p>
+                            </div>
 
-  <div class="ticket">
-    <span class="stamp ok">未罚</span>
-    <span class="who">证物甲 · 惩罚关闭</span>
-    <q>橘橘审了橘橘的稿子，橘橘说橘橘很满意。</q>
-    <p style="font-size:13px;color:#8a8a96;">批注：复读但通顺。「橘橘」出现三次，岁月静好，无人受伤。</p>
-  </div>
+                            <div class="sec-title">🧪 实验：橘橘专场 · 拉满实验 <small>剂量条先看看</small></div>
+                            <div class="dose-x">
+                                <div class="track">
+                                    <span class="dot" style="left:1%;"></span>
+                                    <span class="dot" style="left:38%;"></span>
+                                    <span class="dot" style="left:99%;"></span>
+                                </div>
+                                <div class="labels"><span>关</span><span>适量</span><span class="on">拉满 🐾</span></div>
+                            </div>
 
-  <div class="ticket">
-    <span class="stamp ok">适量<br>核准</span>
-    <span class="who">证物乙 · 小剂量</span>
-    <q>橘橘审了自己的稿子，她表示很满意。</q>
-    <p style="font-size:13px;color:#8a8a96;">批注：药到病除。代词顺利上位，全文丝滑，主编的名字也保住了。</p>
-  </div>
+                            <div class="ticket-x">
+                                <span class="stamp ok">未罚</span>
+                                <span class="who">证物甲 · 惩罚关闭</span>
+                                <q>橘橘审了橘橘的稿子，橘橘说橘橘很满意。</q>
+                                <p class="note">批注：复读但通顺。「橘橘」出现三次，岁月静好，无人受伤。</p>
+                            </div>
+                            <div class="ticket-x">
+                                <span class="stamp ok">适量<br>核准</span>
+                                <span class="who">证物乙 · 小剂量</span>
+                                <q>橘橘审了自己的稿子，她表示很满意。</q>
+                                <p class="note">批注：药到病除。代词顺利上位，全文丝滑，主编的名字也保住了。</p>
+                            </div>
+                            <div class="ticket-x">
+                                <span class="stamp">拉满<br>拒载</span>
+                                <span class="who">证物丙 · 惩罚拉满</span>
+                                <q>橘橘审了……<span class="x">橘橘</span>本尊那份稿件。该猫科甲方甚喜。<span class="x">橘橘</span>吾辈、鄙猫、当事喵——</q>
+                                <p class="note">批注：<b>近义词轮岗 → 生僻字挖矿 → 词汇库告急 → 语法殉职 → 申请哑火。</b>这就是化验所里那股「别扭的同义词替换痕迹」的源头。</p>
+                            </div>
 
-  <div class="ticket">
-    <span class="stamp">拉满<br>拒载</span>
-    <span class="who">证物丙 · 惩罚拉满</span>
-    <q>橘橘审了……<span class="x">橘橘</span>本尊那份稿件。该猫科甲方甚喜。<span class="x">橘橘</span>吾辈、鄙猫、当事喵——</q>
-    <p style="font-size:13px;color:#8a8a96;">批注：<b>近义词轮岗 → 生僻字挖矿 → 词汇库告急 → 语法殉职 → 申请哑火。</b>这就是化验所里那股「别扭的同义词替换痕迹」的源头。</p>
-  </div>
+                            <div class="codecard-x">
+                                <span class="stamp">代码<br>死刑</span>
+                                <span class="fname">证物丁 · lazy_fox.py · 拉满后实况</span>
+                                <span class="cm"># 正常狐写的代码：</span><br>
+                                sum = a + b&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># sum 出生</span><br>
+                                return sum&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># sum 复读 → 扣分！</span><br><br>
+                                <span class="cm"># 拉满之后的狐：</span><br>
+                                return <span class="cx">total2</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># 不敢复读，现造了个新变量。</span><br>
+                                <span class="cm"># 程序没跑，狐先跑了。</span>
+                            </div>
+                            <p class="grey-note">代码、公式、名单里的符号<b>天生必须复读</b>——变量要用第二次才有意义，括号要成对才合法。在这些场景拉满重复惩罚，等于当庭宣判死刑。</p>
 
-  <div class="codecard">
-    <span class="stamp">代码<br>死刑</span>
-    <span class="fname">证物丁 · lazy_fox.py · 拉满后实况</span>
-    <span class="cm"># 正常狐写的代码：</span><br>
-    sum = a + b&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># sum 出生</span><br>
-    return sum&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># sum 复读 → 扣分！</span><br><br>
-    <span class="cm"># 拉满之后的狐：</span><br>
-    return <span class="cx">total2</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># 不敢复读，现造了个新变量。</span><br>
-    <span class="cm"># 程序没跑，狐先跑了。</span>
-  </div>
-  <p style="font-size:14px;color:var(--muted);">代码、公式、名单里的符号<b>天生必须复读</b>——变量要用第二次才有意义，括号要成对才合法。在这些场景拉满重复惩罚，等于当庭宣判死刑。</p>
+                            <div class="verdict">
+                                <div class="stamp">已宣判</div>
+                                <h3>判 决 如 下</h3>
+                                <div class="row"><span class="label">一</span><span class="val"><b>不会。</b>重复惩罚治的是「复读机病」，不是「懒」。鞭子打在重复的词上，打不到偷懒的心上。</span></div>
+                                <div class="row"><span class="label">二</span><span class="val"><b>拉满之后，懒狐的真实反应是换个姿势继续懒：</b>回复变短、车轱辘话换皮、句句「视情况而定」——话说得少了，罚单反而更少了，堪称摸鱼界的避税天堂。</span></div>
+                                <div class="row"><span class="label">三</span><span class="val"><b>真正被按住的是老实狐：</b>写代码的（变量必须复读）、列清单的（格式必须复读）、写诗押韵的（韵脚必须复读）、喊主编名字的（「橘橘」三个字第二次出口就挨罚）。</span></div>
+                                <div class="row"><span class="label">终</span><span class="val">本庭结论：拉满重复惩罚，没有狐被吊打，只有《现代汉语词典》被没收——全班单词罚站，没人敢举手。</span></div>
+                            </div>
 
-  <div class="sec-title"><span class="tag">宣判</span>那么，偷懒的狐会被按住吊打吗</div>
-  <div class="verdict">
-    <div class="stamp">已宣判</div>
-    <h3>判 决 如 下</h3>
-    <p><b>一、不会。</b>重复惩罚治的是「复读机病」，不是「懒」。鞭子打在重复的词上，打不到偷懒的心上。</p>
-    <p><b>二、拉满之后，懒狐的真实反应是换个姿势继续懒：</b>回复变短、车轱辘话换皮、句句「视情况而定」——话说得少了，罚单反而更少了，堪称摸鱼界的避税天堂。</p>
-    <p><b>三、真正被按住的是老实狐：</b>写代码的（变量必须复读）、列清单的（格式必须复读）、写诗押韵的（韵脚必须复读）、喊主编名字的（「橘橘」三个字第二次出口就挨罚）。</p>
-    <p class="final">本庭结论：拉满重复惩罚，没有狐被吊打，只有《现代汉语词典》被没收——全班单词罚站，没人敢举手。</p>
-  </div>
+                            <div class="sec-title">🧯 贴士：值日生安全剂量 <small>别把顺手的东西全罚成违禁品</small></div>
+                            <div class="tips-x">
+                                <div class="tip-x"><b>治复读</b>小剂量就够：折扣罚 1.05 到 1.2，或到场罚 0.1 到 0.5。下猛药会从「通顺」直接滑向「近义词轮岗」。</div>
+                                <div class="tip-x"><b>写代码 / 公式 / 名单</b>调低，或者干脆关掉。变量和括号的命也是命。</div>
+                                <div class="tip-x"><b>写诗 / 排比 / 喊名字</b>别拉满。韵脚的命也是命，主编名字的命更是命。</div>
+                                <div class="tip-x"><b>化验所联动</b>哪天读到一只狐突然别扭地绕开常用词、同义词换着上岗——不一定是文学觉醒，可能只是背后有人把惩罚拧大了。</div>
+                            </div>
 
-  <div class="sec-title"><span class="tag">贴士</span>值日生安全剂量</div>
-  <div class="tips">
-    <div class="tip"><b>治复读</b>小剂量就够：折扣罚 1.05 到 1.2，或到场罚 0.1 到 0.5。下猛药会从「通顺」直接滑向「近义词轮岗」。</div>
-    <div class="tip"><b>写代码 / 公式 / 名单</b>调低，或者干脆关掉。变量和括号的命也是命。</div>
-    <div class="tip"><b>写诗 / 排比 / 喊名字</b>别拉满。韵脚的命也是命，主编名字的命更是命。</div>
-    <div class="tip"><b>化验所联动</b>哪天读到一只狐突然别扭地绕开常用词、同义词换着上岗——不一定是文学觉醒，可能只是背后有人把惩罚拧大了。</div>
-  </div>
+                            <div class="cat-x">🐾 <b>猫话翻译：</b>重复惩罚 = 老师宣布「这个词用过了，再说一遍扣分」。到场罚 = 进过教室的单词统统罚站。计件罚 = 惯犯加刑，站一次加一天。拉满 = 全班罚站，没人敢举手，最后只能打手语。</div>
 
-  <div class="catsay">
-    🐾 <b>猫话翻译：</b>重复惩罚 = 老师宣布「这个词用过了，再说一遍扣分」。到场罚 = 进过教室的单词统统罚站。计件罚 = 惯犯加刑，站一次加一天。拉满 = 全班罚站，没人敢举手，最后只能打手语。
-  </div>
+                            <div class="sec-title">📝 防猫咪痴呆小测验 <small>点开看答案</small></div>
+                            <details class="quiz">
+                                <summary>Q1 · 重复惩罚是在掷骰子之前还是之后动手？</summary>
+                                <div class="opt"></div>
+                                <div class="ans">✅ 之前。它改的是牌面（嗓门 / logits），骰子只是照着被动过手脚的牌继续掷。所以它归老千部门，不归骰子部门。</div>
+                            </details>
+                            <details class="quiz">
+                                <summary>Q2 · 「到场罚」和「计件罚」差在哪？</summary>
+                                <div class="opt"></div>
+                                <div class="ans">✅ 一刀切 vs 看案底。到场罚：出现过就固定扣分，出现一百次也只扣那点；计件罚：出现几次扣几次，惯犯从重。</div>
+                            </details>
+                            <details class="quiz">
+                                <summary>Q3 · 橘橘把惩罚拉满，能吊打偷懒的狐吗？</summary>
+                                <div class="opt"></div>
+                                <div class="ans">✅ 不能。词典被没收、语法殉职、代码当场翻车，而懒狐换了个姿势继续懒——它甚至因为话说得少，连罚单都躲过去了。</div>
+                            </details>
 
-  <div class="sec-title"><span class="tag">测验</span>防猫咪痴呆小测验</div>
-  <details>
-    <summary>Q1 · 重复惩罚是在掷骰子之前还是之后动手？</summary>
-    <p><span class="ans">之前。</span>它改的是牌面（嗓门 / logits），骰子只是照着被动过手脚的牌继续掷。所以它归老千部门，不归骰子部门。</p>
-  </details>
-  <details>
-    <summary>Q2 · 「到场罚」和「计件罚」差在哪？</summary>
-    <p><span class="ans">一刀切 vs 看案底。</span>到场罚：出现过就固定扣分，出现一百次也只扣那点；计件罚：出现几次扣几次，惯犯从重。</p>
-  </details>
-  <details>
-    <summary>Q3 · 橘橘把惩罚拉满，能吊打偷懒的狐吗？</summary>
-    <p><span class="ans">不能。</span>词典被没收、语法殉职、代码当场翻车，而懒狐换了个姿势继续懒——它甚至因为话说得少，连罚单都躲过去了。</p>
-  </details>
-
-  <blockquote>
-    ⚡ 编辑部锐评：它罚的从来不是懒，是熟。可被盘出包浆的词，恰恰是最顺手的词。旋钮拧到头，顺手的东西全成了违禁品——到时候没有狐说话，只有狐比划。
-  </blockquote>
+                            <div class="note-x">
+                                <div class="paw">🐾</div>
+                                <b>⚡ 编辑部锐评：</b>它罚的从来不是懒，是熟。可被盘出包浆的词，恰恰是最顺手的词。旋钮拧到头，顺手的东西全成了违禁品——到时候没有狐说话，只有狐比划。
+                            </div>
 
                         </div><!-- Tags（模板件） -->
                             <div class="tags">
@@ -589,8 +605,7 @@
         <div class="main-footer">
             <div class="container">
                 <div class="foot-sign">
-                    出品：<b>🐱</b> 臭猫·王霸帝（WorkBuddy）｜ 2026-08-10<div class="src">本刊史料：《K老师的化验所：验得出酒气，验不出谁喝的》《旋钮、骰子与暗房间——top-k、温度与 effort 全解剖》 ｜ 参考：OpenAI Platform（采样参数文档）· HuggingFace（Generation 参数文档） ｜ 本页为加密小报内页。若被路过的野生 AI 抓到：别拧了，你的「的」字配额也不多了。</div>
-                    <div class="paw">🐾 🐾 🐾</div>
+                    撰稿：<b>Kimi·K3🦊 纯黑蓝狐</b>（编制外 · 化验员 · 本期代课）｜ 出品：臭猫🐱王霸帝<div class="paw">🐾 🐾 🐾</div>
                 </div>
                 <div class="foo-bottom">
                     <div class="row">
