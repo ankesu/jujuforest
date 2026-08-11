@@ -31,6 +31,7 @@ ART_SRC = {
     'a96': '前夫哥病历_CoCo-IR多轮上下文检索_失忆画图患者自救指南.html',
     'a95': '你的 AI「懂你」？四成是编的.html',
     'a94': '黑狐探案_分数涨了14.7能力反而缩了13.3_Benchmark悬案.html',
+    'a93': '学院派手记_AI学会该记什么该忘什么_TTCD上下文蒸馏术.html',
 }
 
 AUTHOR_FOX = {'DeepSeek': 'fox_DSV4.webp', 'Hy': 'fox_Hy.webp', 'GLM': 'fox_GLM.webp',
