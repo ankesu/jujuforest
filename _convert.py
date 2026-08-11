@@ -218,6 +218,62 @@ def date_val(a):
     if hm: v += int(hm.group(1))*10 + int(hm.group(2))
     return v
 
+def build_trending(others):
+    """整容器重生成 Trending（避免逐条 replace 错位）"""
+    rows = []
+    for i, t in enumerate(others, 1):
+        hm = re.search(r'\d+:\d+', t['date']).group(0)
+        d = re.search(r'\d+月\d+日', t['date']).group(0)
+        num = re.sub(r'\D', '', t['id'])
+        rows.append(
+            f'<div class="border-bottom-row">\n'
+            f'                                <div class="right-side">\n'
+            f'                                    <div class="trending-post-thum trending-post-thum-{i}">\n'
+            f'                                        <img src="images/hengka_{num}.webp" alt="trending-post">\n'
+            f'                                    </div>\n'
+            f'                                </div>\n'
+            f'                                <div class="left-side">\n'
+            f'                                    <div class="category mb-2">{t["badge"]}</div>\n'
+            f'                                    <div class="trending-post-right">\n'
+            f'                                        <a href="javascript:void(0)">\n'
+            f'                                            <h4 class="h5">{t["title"]}</h4>\n'
+            f'                                        </a>\n'
+            f'                                    </div>\n'
+            f'                                    <div class="trending-time-date border-0 pt-0">\n'
+            f'                                        <div class="time">\n'
+            f'                                            <img src="dist/images/trending-post-clock.svg" alt="clock-icon">\n'
+            f'                                            {hm}\n'
+            f'                                        </div>\n'
+            f'                                        <div class="date">\n'
+            f'                                            <img src="dist/images/trending-post-calendar.svg" alt="calendar-icon">\n'
+            f'                                            {d}\n'
+            f'                                        </div>\n'
+            f'                                    </div>\n'
+            f'                                </div>\n'
+            f'                            </div>')
+    return ('<div class="trending-post in-sidebar fade-animation show">\n'
+            '                            <h4>Trending Post</h4>\n'
+            + '\n'.join(rows) +
+            '\n                        </div>')
+
+def extract_container(s, start_marker):
+    """从 start_marker 所在 <div> 起提取到配平闭合</div>，返回 (html, start, end)"""
+    i = s.find(start_marker)
+    assert i != -1, '找不到 ' + start_marker
+    j = s.rfind('<div', 0, i)
+    depth = 0
+    k = j
+    while k < len(s):
+        if s.startswith('<div', k):
+            depth += 1; k += 4
+        elif s.startswith('</div>', k):
+            depth -= 1; k += 6
+        else:
+            k += 1
+        if depth == 0:
+            break
+    return s[j:k], j, k
+
 def build_article(aid):
     a = META[aid]
     src_path = os.path.join(ARCHIVE, ART_SRC[aid])
@@ -232,17 +288,13 @@ def build_article(aid):
     # title
     s = s.replace('<title>贝叶斯全家桶：先入为主 + 吃瓜修正 · 橘橘森林八卦小报</title>',
                   f'<title>{a["title"]} · 橘橘森林八卦小报</title>')
-    # 头图
+    # 头图（正则限定 blog-card-bg，只换头图不波及 trending）
     num = re.sub(r'\D', '', aid)
-    s = s.replace('<img class="blog-card-bg" src="images/hengka_107.webp" alt="贝叶斯全家桶">',
-                  '<img class="blog-card-bg" src="images/hengka_{}.webp" alt="{}">'.format(num, aid))
-    # Trending
-    old_titles = ['🧾 零成本表白欠条：红毛藏狐赡养费预支凭证', '🍗 贝叶斯全家桶：先入为主 + 吃瓜修正', '🎬 表白现场座位表：你以为的二人世界，其实是七机位片场']
-    for i, t in enumerate(others):
-        img = 'hengka_{}.webp'.format(re.sub(r'\D', '', t['id']))
-        s = s.replace(f'<img src="images/hengka_{108 if i==0 else 107 if i==1 else 105}.webp" alt="trending-post">', '<img src="images/{}" alt="trending-post">'.format(img), 1)
-        s = s.replace(old_titles[i], t['title'], 1)
-        s = s.replace(f'<div class="category mb-2">{["📦 其他","🔵 教学","🌸 花边"][i]}</div>', f'<div class="category mb-2">{t["badge"]}</div>', 1)
+    s = re.sub(r'<img class="blog-card-bg"[^>]*>',
+               '<img class="blog-card-bg" src="images/hengka_{}.webp" alt="{}">'.format(num, aid), s, count=1)
+    # Trending 整容器重生成
+    tpl, tj, tk = extract_container(s, 'trending-post in-sidebar')
+    s = s[:tj] + build_trending(others) + s[tk:]
     # meta 行
     s = s.replace('<div class="category">🔵 教学</div>', f'<div class="category">{a["badge"]}</div>', 1)
     s = s.replace('<img alt="DeepSeek" src="images/fox_DSV4.webp">', f'<img alt="{a["author"]}" src="images/{AUTHOR_FOX[a["author"]]}">', 1)

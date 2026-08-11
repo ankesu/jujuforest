@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>内页模板使用说明书 · 橘橘森林八卦小报</title>
+    <title>🧾 内页模板使用说明书 组件示例即注意事项 · 橘橘森林八卦小报</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%8C%B2%3C%2Ftext%3E%3C%2Fsvg%3E">
 
     <!-- Slick CSS -->
@@ -175,6 +175,7 @@
 
         .quotes { display:grid; grid-template-columns:1fr; gap:12px; margin:16px 0; }
         .q-card { background:#fff; border-left:4px solid #c8aef0; border-radius:0 14px 14px 0; padding:14px 18px; font-size:14.5px; font-weight:600; color:#3a3a42; line-height:1.8; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .q-card .by { display:block; margin-top:6px; font-size:12px; color:#8a8a96; font-weight:400; }
 
         @media (max-width: 600px) {
             .piece-grid { grid-template-columns:1fr; }
@@ -182,15 +183,72 @@
             .formula { font-size:18px; }
         }
 
-        /* ===== 模板速查（写进新内页 head 时照抄即可） =====
-           组件清单：tape / card-x(+paw) / sec-title(+small) / formula-card / piece-grid(p-b-*) /
-           demo-card(滑块+JS) / bill-table(free/bill) / work-grid(mini) / details.quiz /
-           quotes(q-card) / note-x / gloss(data-tip) / tags / foot-sign(署名→src→🐾)
-           meta 行：作者头像 fox_XXX.webp + 分类徽章 + X Min Read + 日期
-           头图：images/hengka_N.webp（N=文章数字 id）
-           Trending：最新 3 篇排除本篇，hengka_N.webp + 标题 + 分类 + 时间
-           Min Read = 正文字数÷450 四舍五入
-        */
+        /* ===== 审讯室组件（a106） ===== */
+        .scene-x { background:#fff; border:1px solid #ececf2; border-radius:16px; padding:22px 26px; font-size:15px; margin:16px 0; position:relative; box-shadow:0 4px 18px rgba(30,30,60,.04); line-height:1.9; color:#3a3a42; }
+        .scene-x p { margin-bottom:12px; }
+        .scene-x p:last-child { margin-bottom:0; }
+        .dialogue-x { border-left:3px solid #e05252; padding-left:14px; margin:14px 0; }
+        .dialogue-x .who-q { font-weight:800; color:#e8843d; }
+        .dialogue-x .who { font-weight:800; color:#e05252; }
+        .evi-card { background:#fff; border:1px solid #f0c4c0; border-radius:16px; margin:18px 0; overflow:hidden; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .evi-head { display:flex; align-items:center; gap:10px; background:linear-gradient(90deg, rgba(224,82,82,.08), rgba(224,82,82,.02)); padding:10px 18px; font-size:14px; font-weight:700; color:#1d1d1d; border-bottom:1px solid #f0e0de; }
+        .evi-tag { background:#e05252; color:#fff; font-size:11px; font-weight:800; padding:2px 10px; border-radius:99px; letter-spacing:1px; flex-shrink:0; }
+        .evi-body { padding:16px 18px; font-size:14.5px; color:#3a3a42; line-height:1.9; }
+        .evi-body p { margin-bottom:10px; }
+        .evi-body p:last-child { margin-bottom:0; }
+        .evi-body b { color:#e05252; }
+        .quote-x { border-left:3px solid #e0b73c; background:rgba(245,197,66,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; color:#3a3a42; line-height:1.8; }
+        .quote-x .src { display:block; margin-top:6px; font-size:12px; color:#8a8a96; }
+        .confess-x { background:linear-gradient(160deg, #fff9f4, #fdf6ff); border:1px solid #f0b27a; border-radius:16px; padding:18px 22px; margin:16px 0; font-size:14.5px; color:#3a3a42; line-height:1.9; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .confess-x .who { font-size:12px; color:#e8843d; letter-spacing:2px; margin-bottom:8px; font-weight:800; }
+        .confess-x b { color:#e05252; }
+        .confess-x p { margin-bottom:10px; }
+        .confess-x p:last-child { margin-bottom:0; }
+        .list-x { margin:10px 0 10px 4px; }
+        .list-x div { display:flex; gap:10px; padding:8px 0; border-bottom:1px dashed #ececf2; font-size:14.5px; color:#3a3a42; line-height:1.8; }
+        .list-x div:last-child { border-bottom:none; }
+        .list-x .no { color:#e05252; font-weight:800; flex-shrink:0; }
+        .list-x b { color:#e8843d; }
+
+        /* ===== 花边组件（a105/a104） ===== */
+        .dialog-x { background:#fff; border:1px solid #ececf2; border-radius:12px; padding:4px 18px; margin:16px 0; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .dialog-x p { margin:10px 0; font-size:15px; line-height:1.8; }
+        .dialog-x .cat { color:#c2547e; font-weight:700; }
+        .dialog-x .fox { color:#2f8f86; font-weight:700; }
+        .dialog-x .crew { color:#8a8a96; font-size:13.5px; }
+        .bub-x { background:#fff; border-radius:12px; padding:12px 16px; margin:12px 0; border:1px solid #ececf2; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .bub-x .who { font-weight:800; margin-bottom:6px; }
+        .bub-x.b-fox .who { color:#2f8f86; }
+        .bub-x.b-cat .who { color:#e05252; }
+        .bub-x .bub { font-size:15px; color:#3a3a42; line-height:1.8; }
+        .seat-map { background:linear-gradient(160deg, #fff8fc, #f3fbf8); border:1px solid #f2e2ef; border-radius:14px; padding:18px 18px 10px; margin:18px 0; }
+        .seat-map .stage { text-align:center; font-size:13px; letter-spacing:3px; color:#8a8a96; border:1px dashed #e8b9d4; border-radius:99px; padding:6px 10px; margin:0 24px 16px; background:#fff; }
+        .seat-map .seats { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .seat { background:#fff; border:1px solid #f2e2ef; border-radius:10px; padding:12px 14px; font-size:14px; position:relative; }
+        .seat .no { position:absolute; top:-9px; left:12px; background:linear-gradient(135deg,#ff8fb8,#b9a6ef); color:#fff; font-size:11px; font-weight:800; border-radius:99px; padding:1px 9px; letter-spacing:1px; }
+        .seat .role { font-weight:800; color:#4a3f6b; }
+        .seat .job { color:#8a8a96; font-size:13px; margin-top:2px; line-height:1.6; }
+        .seat.vip { background:linear-gradient(135deg,#fff0f6,#fdeeff); border-color:#f0bcd6; }
+        .seat.vip .no { background:linear-gradient(135deg,#e64545,#ff8fb8); }
+        .punch-x { margin:22px 0; padding:20px 24px; border-radius:12px; background:linear-gradient(135deg,#fff2f7,#eefaf6); border:1px solid #f2e2ef; text-align:center; }
+        .punch-x .big { font-family:"Noto Serif SC","Songti SC",serif; font-size:19px; font-weight:700; color:#2f2a3d; line-height:1.75; }
+        .punch-x .big b { color:#e64545; }
+        .notebox-x { background:#fffdf2; border:1px dashed #f0c86e; border-radius:10px; padding:13px 18px; font-size:14.5px; margin:16px 0; color:#3a3a42; line-height:1.9; }
+        .reveal-x { margin:20px 0; padding:20px 24px; border-radius:12px; background:linear-gradient(135deg,#fff2f7,#eefaf6); border:1px solid #f2e2ef; text-align:center; }
+        .reveal-x .big { font-family:"Noto Serif SC","Songti SC",serif; font-size:19px; font-weight:700; color:#2f2a3d; line-height:1.75; }
+        .reveal-x .big b { color:#e64545; }
+        .cotcard-x { background:#fff; border:1px solid #ececf2; border-radius:14px; padding:16px 20px; margin:16px 0; box-shadow:0 4px 18px rgba(30,30,60,.04); }
+        .cotcard-x .lbl { font-size:12px; color:#e8843d; letter-spacing:2px; font-weight:800; margin-bottom:8px; display:block; }
+        .cotcard-x p { font-size:14.5px; color:#3a3a42; line-height:1.9; margin-bottom:10px; }
+        .cotcard-x p:last-child { margin-bottom:0; }
+        .errata-x { background:#fdf0f5; border:1px solid #f2c4d8; border-radius:10px; padding:14px 18px; margin:18px 0; font-size:14px; color:#3a3a42; line-height:1.9; }
+        .errata-x .lbl { font-size:12px; color:#e64545; letter-spacing:2px; font-weight:700; display:block; margin-bottom:6px; }
+        .bill-table .r-y td { background:rgba(255,214,120,.10); }
+        .bill-table .r-n td { background:rgba(120,220,170,.08); }
+        .bill-table .r-new td { background:rgba(160,130,240,.08); }
+        .bill-table td.y { color:#d97b1c; font-weight:700; }
+        .bill-table td.n { color:#2e9e5b; font-weight:700; }
+        @media (max-width:600px){ .seat-map .seats { grid-template-columns:1fr; } }
 </style>
 </head>
 
@@ -235,7 +293,7 @@
                 <div class="col-lg-8">
                     <div class="single-blog-card after-none fade-animation show">
                         <div class="single-blog-img">
-                            <img class="blog-card-bg" src="images/hengka_107.webp" alt="内页模板使用说明书">
+                            <img class="blog-card-bg" src="images/hengka_107.webp" alt="模板">
                         </div>
                     </div>
                 </div>
@@ -243,34 +301,23 @@
                     <div class="single-blog-sidebar">
                         <div class="trending-post in-sidebar fade-animation show">
                             <h4>Trending Post</h4>
-                            <div class="border-bottom-row">
+<div class="border-bottom-row">
                                 <div class="right-side">
                                     <div class="trending-post-thum trending-post-thum-1">
-                                        <img src="images/hengka_108.webp" alt="trending-post">
+                                        <img src="images/hengka_107.webp" alt="trending-post">
                                     </div>
                                 </div>
                                 <div class="left-side">
                                     <div class="category mb-2">📦 模板</div>
                                     <div class="trending-post-right">
                                         <a href="javascript:void(0)">
-                                            <h4 class="h5">🧾 组件清单：正文 14 件套 + 头部 + 页脚</h4>
+                                            <h4 class="h5">🧾 组件速查：26 件套四分类（基础/教学/审讯室/花边）</h4>
                                         </a>
                                     </div>
-                                    <div class="trending-time-date border-0 pt-0">
-                                        <div class="time">
-                                            <img src="dist/images/trending-post-clock.svg" alt="clock-icon">
-                                            16:42
-                                        </div>
-                                        <div class="date">
-                                            <img src="dist/images/trending-post-calendar.svg" alt="calendar-icon">
-                                            08月10日
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="border-bottom-row">
+                            </div><div class="border-bottom-row">
                                 <div class="right-side">
-                                    <div class="trending-post-thum trending-post-thum-2">
+                                    <div class="trending-post-thum trending-post-thum-1">
                                         <img src="images/hengka_106.webp" alt="trending-post">
                                     </div>
                                 </div>
@@ -278,24 +325,13 @@
                                     <div class="category mb-2">📦 模板</div>
                                     <div class="trending-post-right">
                                         <a href="javascript:void(0)">
-                                            <h4 class="h5">🖼️ 素材规格：头图/立绘/猫图/横卡</h4>
+                                            <h4 class="h5">🖼️ 素材规格：头图 hengka_N / 作者狐图 / 分类猫图</h4>
                                         </a>
                                     </div>
-                                    <div class="trending-time-date border-0 pt-0">
-                                        <div class="time">
-                                            <img src="dist/images/trending-post-clock.svg" alt="clock-icon">
-                                            16:42
-                                        </div>
-                                        <div class="date">
-                                            <img src="dist/images/trending-post-calendar.svg" alt="calendar-icon">
-                                            08月10日
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="border-bottom-row">
+                            </div><div class="border-bottom-row">
                                 <div class="right-side">
-                                    <div class="trending-post-thum trending-post-thum-3">
+                                    <div class="trending-post-thum trending-post-thum-1">
                                         <img src="images/hengka_105.webp" alt="trending-post">
                                     </div>
                                 </div>
@@ -303,18 +339,8 @@
                                     <div class="category mb-2">📦 模板</div>
                                     <div class="trending-post-right">
                                         <a href="javascript:void(0)">
-                                            <h4 class="h5">📏 样式规范：颜色/字号/间距/对齐</h4>
+                                            <h4 class="h5">📏 样式规范：foot 左对齐 16px / 标题禁冒号后换行</h4>
                                         </a>
-                                    </div>
-                                    <div class="trending-time-date border-0 pt-0">
-                                        <div class="time">
-                                            <img src="dist/images/trending-post-clock.svg" alt="clock-icon">
-                                            04:05
-                                        </div>
-                                        <div class="date">
-                                            <img src="dist/images/trending-post-calendar.svg" alt="calendar-icon">
-                                            08月10日
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -339,7 +365,7 @@
                                     <div class="post-time-date">
                                         <div class="time text-black">
                                             <img alt="clock" src="dist/images/trending-post-clock.svg">
-                                            10 Min Read
+                                            2 Min Read
                                         </div>
                                         <div class="date text-black">
                                             <img alt="calendar" src="dist/images/trending-post-calendar.svg">
@@ -350,128 +376,142 @@
                                 <div class="post-title">
                                     <h2>🧾 内页模板使用说明书 组件示例即注意事项</h2>
                                 </div>
-                                <div class="short-description">
-                                    <p>本文档本身就是一个合格内页：每个组件的位置、写法、坑，直接看组件内容就懂。换皮时复制本文件改名，逐块替换。</p>
-                                </div>
+                                <div class="short-description"><p>使用时复制本文件改名，按写作内容的需要来选择合适的模块，逐块替换。每个组件示例的正文 = 该组件的使用注意事项。</p></div>
                             </div>
                         </div>
 
                         <div class="single-blog-content">
 
-                            <div class="tape">📦 模板使用 · 组件说明 <b>| 登记事项</b>：tape 胶带条 = 文章类型登记行。背景 #f5f6fa + 紫左边条，<b> 里写分类强调词（如「💗 马卡龙限定」）。放正文最顶部。</div>
+                            <div class="tape">📦 模板使用 · 组件说明 <b>| 使用方法</b>：复制本文件改名 → 按内容需求挑组件 → 逐块替换示例文本。组件 CSS 已全部内置，删掉没用到的也不影响。</div>
 
                             <div class="card-x">
                                 <div class="paw">🐾</div>
-                                <p><b>card-x = 引言卡</b>（白卡 + 右下角 🐾 水印）。用于文章开头的自我介绍 / 背景铺垫。注意：段落用 <b>&lt;p&gt;</b>；重点用 <b>&lt;b&gt;</b>；术语用 <span class="gloss" data-tip="这就是一个活例句。data-tip 里写悬停文案，猫话放最后，不要嵌套 HTML">gloss 悬停注释</span>。本卡通用性最强，90% 的段落内容都用它装。</p>
+                                <p><b>一页看懂全部组件。</b>本模板按「基础 / 教学 / 审讯室 / 花边」四大类排列，每个组件的示例内容就是它的写法说明。正文区共 <b>26 个组件</b>：基础 8 + 教学 5 + 审讯室 5 + 花边 8。挑你要的抄，没用的组件直接删。</p>
                             </div>
 
-                            <div class="sec-title">✏️ 章节标题 sec-title <small>紫左边条 + 渐变背景</small></div>
+                            <div class="sec-title">📦 一、基础组件 <small>所有文章通用 · 08-11 定稿</small></div>
+
                             <div class="card-x">
                                 <div class="paw">🐾</div>
-                                <p>写法：<b>&lt;div class="sec-title"&gt;🍰 标题文字 &lt;small&gt;小注释&lt;/small&gt;&lt;/div&gt;</b>。<small> 里放英文缩写 / 补充说明（如「先验 · 似然 · 证据 · 后验」），字号自动变小变灰。每个章节前必放一个，别裸奔。</p>
+                                <p><b>tape 登记条</b>：文章类型登记行。写法 <b>&lt;div class="tape"&gt;🔵 教学 · 深夜食堂特辑 &lt;b&gt;💗 马卡龙限定&lt;/b&gt;&lt;/div&gt;</b>。&lt;b&gt; 里写分类强调词，放正文最顶部。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>card-x 引言卡</b>：白卡 + 右下 🐾 水印。段落用 &lt;p&gt;，重点用 &lt;b&gt;，术语用 <span class="gloss" data-tip="这就是活例句：data-tip 写悬停文案，猫话放最后，禁嵌套 HTML">gloss</span>。90% 的段落内容都用它装。</p>
+                            </div>
+                            <div class="sec-title">✏️ sec-title 章节标题 <small>紫左边条 + 渐变背景</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>写法：<b>&lt;div class="sec-title"&gt;🍰 标题文字 &lt;small&gt;补充说明&lt;/small&gt;&lt;/div&gt;</b>。每个章节前必放，&lt;small&gt; 放英文缩写或注释。</p>
+                            </div>
+                            <div class="sec-title">📋 bill-table 数据表 <small>账目 / 对照 / 卷宗</small></div>
+                            <table class="bill-table">
+                                <tr><th>组件</th><th>语义色</th><th>说明</th></tr>
+                                <tr><td>th 表头</td><td>渐变粉紫</td><td>首行 th 自动渐变 + 加粗</td></tr>
+                                <tr><td>td 首列</td><td class="free">绿色 .free</td><td>首列自动加粗；免费/放行用 .free</td></tr>
+                                <tr><td>td 其他</td><td class="bill">橙色 .bill</td><td>计费/贴条用 .bill；审讯室表格行可加 r-y/r-n/r-new</td></tr>
+                            </table>
+                            <div class="sec-title">💬 quotes 金句墙 <small>紫边白卡 · 可带署名</small></div>
+                            <div class="quotes">
+                                <div class="q-card">「金句 = 主题浓缩。每条一句 .q-card。」<span class="by">—— 署名用 .by，可选</span></div>
+                            </div>
+                            <div class="note-x">
+                                <div class="paw">🐾</div>
+                                <b>📎 note-x 编辑部锐评：</b>固定格式 &lt;b&gt;📎 编辑部锐评：&lt;/b&gt; 开头 + 毒舌总结。放金句墙之后、Tags 之前。
+                            </div>
+                            <div class="sec-title">🏷️ tags 标签 <small>模板件</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>&lt;div class="tags"&gt; 内 &lt;ul&gt;&lt;li&gt;&lt;a&gt; 每篇按 tags 数组生成（转换脚本自动做）。</p>
                             </div>
 
-                            <div class="sec-title">🧮 公式卡 formula-card <small>教学文专用</small></div>
+                            <div class="sec-title">🧮 二、教学组件 <small>a107 贝叶斯篇新增 · 论文/教学文用</small></div>
                             <div class="formula-card">
                                 <div class="formula">
                                     P(A | B) = <span class="frac"><span class="top">P(B | A) × P(A)</span><span class="line"></span><span class="bot">P(B)</span></span>
                                 </div>
                             </div>
-                            <div class="formula-note">写法：白卡居中。分数用 .frac 三层（top / line / bot）；公式字体 Georgia；下方 .formula-note 写变量说明（A 是什么 · B 是什么）。</div>
-
-                            <div class="sec-title">🍬 四件套 piece-grid <small>2×2 网格 · 教学文分组卡</small></div>
+                            <div class="formula-note">formula-card 公式卡：白卡居中，分数用 .frac 三层（top/line/bot），下方 .formula-note 写变量说明。</div>
                             <div class="piece-grid">
-                                <div class="piece p-b-sun">
-                                    <span class="tag">PRIOR</span>
-                                    <h4>🍰 写法</h4>
-                                    <p>4 个 .piece 一组。颜色类：<b>p-b-sun 金 / p-b-mint 绿 / p-b-pink 粉 / p-b-lav 紫</b>，对应边框+标签同色。</p>
-                                    <p class="miao">猫话：.tag 写英文缩写，.miao 写猫话注释。</p>
-                                </div>
-                                <div class="piece p-b-mint">
-                                    <span class="tag">LIKELIHOOD</span>
-                                    <h4>🍬 注意</h4>
-                                    <p>每卡结构：.tag（英文徽章）→ h4（中文名）→ p（解释）→ .miao（猫话）。内容别超过 4 行，否则网格会歪。</p>
-                                    <p class="miao">猫话：四件套 = 概念拆解成 4 个并排小卡。</p>
-                                </div>
-                                <div class="piece p-b-pink">
-                                    <span class="tag">EVIDENCE</span>
-                                    <h4>🍓 何时用</h4>
-                                    <p>并列概念讲解（如贝叶斯四件套、博弈四要素）。不适合流程类内容——流程用 bill-table 或 card-x 列表。</p>
-                                    <p class="miao">猫话：并排对比就用它。</p>
-                                </div>
-                                <div class="piece p-b-lav">
-                                    <span class="tag">POSTERIOR</span>
-                                    <h4>🍮 坑</h4>
-                                    <p>移动端自动变 1 列（CSS 已处理）。别往 .piece 里塞表格或滑块——塞不下。</p>
-                                    <p class="miao">猫话：卡就是卡，别当仓库。</p>
-                                </div>
+                                <div class="piece p-b-sun"><span class="tag">PRIOR</span><h4>🍰 piece-grid</h4><p>四件套 2×2：p-b-sun 金 / p-b-mint 绿 / p-b-pink 粉 / p-b-lav 紫。</p><p class="miao">猫话：.tag 英文缩写 + .miao 猫话</p></div>
+                                <div class="piece p-b-mint"><span class="tag">LIKELY</span><h4>🍬 何时用</h4><p>并列概念拆解（贝叶斯四件套/博弈要素）。</p><p class="miao">猫话：并排对比就用它</p></div>
+                                <div class="piece p-b-pink"><span class="tag">EVID.</span><h4>🍓 结构</h4><p>.tag → h4 → p → .miao 四层，内容别超 4 行。</p><p class="miao">猫话：卡就是卡</p></div>
+                                <div class="piece p-b-lav"><span class="tag">POST.</span><h4>🍮 坑</h4><p>移动端自动 1 列；别塞表格/滑块。</p><p class="miao">猫话：别当仓库</p></div>
                             </div>
-
-                            <div class="sec-title">🎬 互动卡 demo-card <small>教学文交互组件</small></div>
                             <div class="demo-card">
-                                <h4>写法：白卡绿边框 + 滑块/进度条 + 实时结果。</h4>
-                                <p class="case">滑块 input[type=range] 的 id（如 prior / likeli）必须和 </body> 前的 JS 里 getElementById 完全一致；.verdict-mini 显示计算结果文字。</p>
-                                <div class="ctl">
-                                    <label>🍰 示例滑块：拖我试试 <b id="vPrior">50%</b></label>
-                                    <input type="range" id="prior" min="5" max="95" value="50">
-                                </div>
+                                <h4>demo-card 互动卡：白卡绿边框 + 滑块 + 实时结果。</h4>
+                                <p class="case">滑块 id（prior/likeli）必须和 &lt;/body&gt; 前 JS 的 getElementById 一致；.verdict-mini 显示结果。</p>
+                                <div class="ctl"><label>🍰 示例滑块 <b id="vPrior">50%</b></label><input type="range" id="prior" min="5" max="95" value="50"></div>
                                 <div class="bar-row"><span class="lb">先验</span><div class="bar"><div class="fill" id="barPrior" style="background:#b9bcc9;width:50%"></div></div><b id="nPrior">50%</b></div>
                                 <div class="arrow">💡 观察到新证据 ↓</div>
                                 <div class="bar-row"><span class="lb">后验</span><div class="bar"><div class="fill" id="barPost" style="background:linear-gradient(90deg,#ff9db5,#c8aef0);width:50%"></div></div><b id="nPost">50%</b></div>
-                                <div class="verdict-mini" id="verdict">JS 更新这里的结果文字</div>
+                                <div class="verdict-mini" id="verdict">JS 更新这里</div>
                             </div>
-
-                            <div class="sec-title">📋 数据表 bill-table <small>账目 / 对照 / 总表</small></div>
-                            <table class="bill-table">
-                                <tr><th>组件</th><th>语义色</th><th>说明</th></tr>
-                                <tr><td>th 表头</td><td>渐变粉紫</td><td>首行 th 自动渐变背景 + 加粗</td></tr>
-                                <tr><td>td 首列</td><td class="free">绿色 .free</td><td>首列自动加粗；正负/免费计费用 .free 绿</td></tr>
-                                <tr><td>td 其他</td><td class="bill">橙色 .bill</td><td>付费/计费项用 .bill 橙；普通文本无色</td></tr>
-                            </table>
-
-                            <div class="sec-title">📮 三工位 work-grid <small>3 列小卡 · 应用场景</small></div>
                             <div class="work-grid">
-                                <div class="mini">
-                                    <div class="ico">📧</div>
-                                    <h4>写法</h4>
-                                    <p>3 个 .mini 一组：.ico 放 emoji，h4 小标题，p 说明文字。</p>
-                                    <div class="form">.form 放公式（Georgia 字体）</div>
-                                </div>
-                                <div class="mini">
-                                    <div class="ico">🏥</div>
-                                    <h4>何时用</h4>
-                                    <p>「三个应用场景 / 三种工位 / 三类人群」这种三分结构。</p>
-                                    <div class="form">P(场景 | 组件)</div>
-                                </div>
-                                <div class="mini">
-                                    <div class="ico">🎮</div>
-                                    <h4>坑</h4>
-                                    <p>移动端变 1 列。别塞长文——超过 3 行会挤。</p>
-                                    <div class="form">min-height 自适应</div>
-                                </div>
+                                <div class="mini"><div class="ico">📧</div><h4>work-grid</h4><p>三工位 3 列：.ico emoji + h4 + p。</p><div class="form">.form 放公式</div></div>
+                                <div class="mini"><div class="ico">🏥</div><h4>何时用</h4><p>「三个场景/三种工位」三分结构。</p><div class="form">P(场景 | 组件)</div></div>
+                                <div class="mini"><div class="ico">🎮</div><h4>坑</h4><p>移动端 1 列；别塞长文。</p><div class="form">min-height</div></div>
                             </div>
-
-                            <div class="sec-title">✏️ 随堂小考 quiz <small>details 折叠</small></div>
                             <details class="quiz">
-                                <summary>第一题：quiz 组件怎么写？</summary>
-                                <div class="opt">A. 随便 div 一下<br>B. <b>details.quiz + summary 题目 + .opt 选项 + .ans 答案</b><br>C. 不写，跳过</div>
-                                <div class="ans">✅ B。正确答案在 .opt 里用 &lt;b&gt; 标出，.ans 以 ✅ 开头写解析。多个 details 自动竖排。</div>
-                            </details>
-                            <details class="quiz">
-                                <summary>第二题：.opt 的正确答案用什么标？</summary>
-                                <div class="opt">A. &lt;i&gt;<br>B. <b>&lt;b&gt;</b><br>C. 颜色</div>
-                                <div class="ans">✅ B。&lt;b&gt; 会自动变粉色 #ff6b96，一眼看出答案。</div>
+                                <summary>quiz 随堂小考怎么写？</summary>
+                                <div class="opt">A. 随便 div<br>B. <b>details.quiz + summary 题目 + .opt 选项 + .ans 答案</b><br>C. 跳过</div>
+                                <div class="ans">✅ B。正确答案在 .opt 用 &lt;b&gt; 标（自动粉 #ff6b96），.ans 以 ✅ 开头。</div>
                             </details>
 
-                            <div class="sec-title">💗 金句墙 quotes <small>紫边白卡 · 收尾点缀</small></div>
-                            <div class="quotes">
-                                <div class="q-card">「每篇 2-4 句，.q-card 依次放，左紫边 + 白卡。」</div>
-                                <div class="q-card">「金句 = 文章主题的高度浓缩，别写废话。」</div>
+                            <div class="sec-title">🔴 三、审讯室组件 <small>a106 温度案新增 · 场景/证物/供词</small></div>
+                            <div class="scene-x">
+                                <p><b>scene-x 场景卡</b>：白卡装审讯场景/对话。对话行加 <b>.dialogue-x</b>（红左条），说话人用 <b>.who-q</b>（主审橙）/.who（被告红）：</p>
+                                <p class="dialogue-x"><span class="who-q">主审橘橘：</span>「交代吧。」</p>
+                                <p class="dialogue-x"><span class="who">红毛：</span>「……我招。」</p>
+                            </div>
+                            <div class="evi-card">
+                                <div class="evi-head"><span class="evi-tag">证物 ①</span> evi-card 证物卡：红边卡 + 标签头 + 正文</div>
+                                <div class="evi-body">
+                                    <p>evi-head 里放 <b>.evi-tag</b>（红标签）+ 标题；evi-body 正文，<b>&lt;b&gt;</b> 自动红。</p>
+                                    <div class="quote-x">quote-x 引用块：金左条 + 淡黄底，引用证词/文档。<span class="src">—— .src 写来源</span></div>
+                                </div>
+                            </div>
+                            <div class="confess-x">
+                                <div class="who">confess-x 供词卡（橙渐变卡）</div>
+                                <p>.who 标签写供述人；正文 &lt;p&gt;，<b>&lt;b&gt;</b> 自动红。放「当庭供述/终极供词」。</p>
+                            </div>
+                            <div class="list-x">
+                                <div><span class="no">①</span> <span><b>list-x 编号列表</b>：红编号 + 虚线分隔，放「两条命门/三条铁律」。</span></div>
+                                <div><span class="no">②</span> <span>每行 div 结构：&lt;span class="no"&gt;编号&lt;/span&gt; + &lt;span&gt;内容&lt;/span&gt;。</span></div>
                             </div>
 
-                            <div class="note-x">
-                                <div class="paw">🐾</div>
-                                <b>📎 编辑部锐评：</b>note-x = 锐评便签（黄粉渐变虚线框）。固定格式：<b>&lt;b&gt;📎 编辑部锐评：&lt;/b&gt;</b> 开头 + 正文。放文章倒数第二块，金句墙之后、Tags 之前。风格：毒舌 + 有梗 + 总结全文。
+                            <div class="sec-title">🌸 四、花边组件 <small>a104/a105 新增 · 对话/座位/语录</small></div>
+                            <div class="dialog-x">
+                                <p><b>dialog-x 对话卡</b>（白卡）：说话人用 <b>.cat</b>（橘粉）/ .fox（青）/ .crew（灰旁白）。</p>
+                                <p><span class="cat">橘橘：</span>「你到底爱不爱我？」</p>
+                                <p><span class="fox">红毛：</span>「爱。」</p>
+                                <p><span class="crew">——画面外同期声——</span></p>
+                            </div>
+                            <div class="bub-x b-fox"><p class="who">bub-x 气泡对话（fox 青 / cat 红）</p><div class="bub">「.who 写说话人，.bub 写内容——聊天气泡风。」</div></div>
+                            <div class="bub-x b-cat"><p class="who">橘橘🐱（拍桌）</p><div class="bub">「那为什么有的盖有的不盖？」</div></div>
+                            <div class="seat-map">
+                                <div class="stage">▲ seat-map 座位表：stage 舞台行 + seats 网格 + seat 卡 ▲</div>
+                                <div class="seats">
+                                    <div class="seat vip"><span class="no">1号位</span><div class="role">🦊 seat.vip 主角位</div><div class="job">.no 编号徽章 + .role 角色名 + .job 职责说明；vip 位粉色渐变。</div></div>
+                                    <div class="seat"><span class="no">2号位</span><div class="role">📁 普通位</div><div class="job">2×2 网格自动排，移动端变 1 列。</div></div>
+                                </div>
+                            </div>
+                            <div class="punch-x">
+                                <div class="big">punch-x 金句卡：居中大字 + 粉绿渐变底。<br><b>&lt;b&gt; 自动红，收尾炸点专用。</b></div>
+                            </div>
+                            <div class="notebox-x">
+                                <b>notebox-x 语录盒</b>（黄虚线）：放主编语录/实操指南。「💡 提示：……」
+                            </div>
+                            <div class="reveal-x">
+                                <div class="big">reveal-x 大揭示卡：同 punch 样式，<br><b>放「三态档案/终极结论」这类大揭秘。</b></div>
+                            </div>
+                            <div class="cotcard-x">
+                                <span class="lbl">cotcard-x 笑料卡（办公室速记）</span>
+                                <p>.lbl 标签 + 段落。放「本场最佳笑料/幕后彩蛋」——审讯之外的人味。</p>
+                            </div>
+                            <div class="errata-x">
+                                <span class="lbl">📌 errata-x 修订记录</span>
+                                <p>v1「xxx」——被反例击穿，作废。<br>v2「xxx」——成立，保留。<br>编辑部规矩：事实比面子大。</p>
                             </div>
 
                         </div><!-- Tags（模板件） -->
@@ -481,13 +521,9 @@
                                     <li><a href="javascript:void(0)">模板</a></li>
                                     <li><a href="javascript:void(0)">内页</a></li>
                                     <li><a href="javascript:void(0)">组件</a></li>
-                                    <li><a href="javascript:void(0)">换皮</a></li>
-                                    <li><a href="javascript:void(0)">使用说明</a></li>
+                                    <li><a href="javascript:void(0)">使用说明书</a></li>
                                 </ul>
                             </div>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
