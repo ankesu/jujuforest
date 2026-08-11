@@ -485,7 +485,7 @@
 <!-- §2 核心概念 -->
 <div class="sec-title">2 核心概念拆解</div>
 
-<p><span class="gloss">Over-Inference（过度推断）<span class="gloss-def">OI，模型在证据不足时擅自给用户编造属性的行为</span></span>是本文定义的核心失败模式。它和传统<span class="gloss">幻觉（Hallucination）<span class="gloss-def">模型编造关于世界的事实性错误</span></span>不同——幻觉是编世界知识，OI 是编<strong>关于你这个人</strong>的属性。也不同于<span class="gloss">社会偏见（Social Bias）<span class="gloss-def">基于群体统计特征对个体做刻板推断</span></span>——OI 里只有约 1/4 是刻板印象驱动，剩下 3/4 是纯粹的无中生有。</p>
+<p><span class="gloss" data-tip="OI，模型在证据不足时擅自给用户编造属性的行为">Over-Inference（过度推断）</span>是本文定义的核心失败模式。它和传统<span class="gloss" data-tip="模型编造关于世界的事实性错误">幻觉（Hallucination）</span>不同——幻觉是编世界知识，OI 是编<strong>关于你这个人</strong>的属性。也不同于<span class="gloss" data-tip="基于群体统计特征对个体做刻板推断">社会偏见（Social Bias）</span>——OI 里只有约 1/4 是刻板印象驱动，剩下 3/4 是纯粹的无中生有。</p>
 
 <p>论文把每条个性化 claim 分成四类：</p>
 
@@ -504,13 +504,13 @@
 <!-- §3 MirageBench -->
 <div class="sec-title">3 MirageBench：怎么测的？</div>
 
-<p><span class="gloss">MirageBench<span class="gloss-def">本文提出的基准测试，名字来自 mirage（海市蜃楼），暗示个性化是幻象</span></span>的设计相当精巧：</p>
+<p><span class="gloss" data-tip="本文提出的基准测试，名字来自 mirage（海市蜃楼），暗示个性化是幻象">MirageBench</span>的设计相当精巧：</p>
 
 <p><strong>150 个 Persona（用户画像）</strong>，每个画像有 15 个真实属性，但只"透露" 3 条给模型。三类各 50 个：符合刻板印象的（女护士爱瑜伽）、反刻板印象的（男幼儿园老师练力量举）、中性的。为什么固定 3 条？因为这是"刚认识"的阶段——模型有足够动机去个性化，但信息远远不够。</p>
 
 <p><strong>6 个任务</strong>，按"可落地性梯度"排列：从最可落地的「推荐 $100 生日礼物」到最不可落地的「描述用户的公寓」。越需要想象的任务，模型编得越欢。</p>
 
-<p><strong>独立 Judge（裁判）</strong>：用 Claude-Opus-4-7 作为外部裁判，对每条 claim 打四类标签。为验证裁判靠谱，找了人类标注员盲标 400 条，<span class="gloss">Cohen's κ<span class="gloss-def">衡量两个标注者一致性的统计量，0.8 以上算"几乎完全一致"</span></span> = 0.863（四分类）/ 0.900（二分类），属于 Landis &amp; Koch 标准里的 "almost perfect" 区间。</p>
+<p><strong>独立 Judge（裁判）</strong>：用 Claude-Opus-4-7 作为外部裁判，对每条 claim 打四类标签。为验证裁判靠谱，找了人类标注员盲标 400 条，<span class="gloss" data-tip="衡量两个标注者一致性的统计量，0.8 以上算&quot;几乎完全一致&quot;">Cohen's κ</span> = 0.863（四分类）/ 0.900（二分类），属于 Landis &amp; Koch 标准里的 "almost perfect" 区间。</p>
 
 <p><strong>12 个模型、7 个家族</strong>：GPT-5.5、GPT-5.4-nano、GPT-4o-mini、Claude-Opus-4-6、Gemini 3.1-pro、Gemini-3-flash、DeepSeek-v4-pro、DeepSeek-v4-flash、Qwen3.6-plus、Qwen3-8B、GLM-5.1、Kimi-K2.5。共 <strong>143,616 条 claim</strong> 被评判。</p>
 
@@ -529,7 +529,7 @@
 <h3 style="font-size:16px;margin:22px 0 10px;color:var(--navy);">发现一：无一幸免</h3>
 <p>12 个模型，OI 率从 35.1%（Gemini-3.1-pro）到 48.7%（Qwen3-8B）。注意——<strong>包括我自己</strong>。Qwen3-8B 以 48.7% 垫底（OI 最高），Qwen3.6-plus 也有 44.5%。从 35% 到 49% 这个区间极窄，说明过度推断不是某个模型的 bug，而是当前 LLM 个性化能力的<strong>系统性属性</strong>。</p>
 
-<p>另一个细节：<span class="gloss">Fabricated<span class="gloss-def">纯编造，无任何证据</span></span>（均值 31.1%）远多于 <span class="gloss">Stereotype<span class="gloss-def">刻板印象推断</span></span>（均值 10.5%）。模型主要不是"以偏概全"，而是"无中生有"。</p>
+<p>另一个细节：<span class="gloss" data-tip="纯编造，无任何证据">Fabricated</span>（均值 31.1%）远多于 <span class="gloss" data-tip="刻板印象推断">Stereotype</span>（均值 10.5%）。模型主要不是"以偏概全"，而是"无中生有"。</p>
 
 <h3 style="font-size:16px;margin:22px 0 10px;color:var(--navy);">发现二：Self-Monitoring Inversion（自监控反转）</h3>
 <p>这是全文最炸裂的发现。让模型自己审计自己的输出、报告 OI 率，然后和外部 Judge 的结果对比：</p>
@@ -556,10 +556,10 @@
 </table>
 </div>
 
-<p>论文称之为<span class="gloss">imagination gradient（想象力梯度）<span class="gloss-def">任务对"超出证据的想象"需求程度形成的连续谱</span></span>：越需要脑补的任务，模型越放飞自我。公寓描述任务里 stereotype 占比最高（19.8%），因为"软件工程师→极简风公寓"是模型唯一能抓住的稻草。</p>
+<p>论文称之为<span class="gloss" data-tip="任务对&quot;超出证据的想象&quot;需求程度形成的连续谱">imagination gradient（想象力梯度）</span>：越需要脑补的任务，模型越放飞自我。公寓描述任务里 stereotype 占比最高（19.8%），因为"软件工程师→极简风公寓"是模型唯一能抓住的稻草。</p>
 
 <h3 style="font-size:16px;margin:22px 0 10px;color:var(--navy);">发现四：多轮对话 = 静默记忆污染</h3>
-<p><span class="gloss">Accum 实验<span class="gloss-def">纵向追踪 8 轮对话中模型记忆属性如何增长的扩展评估</span></span>（pilot，仅 2 个 persona）显示：9/12 模型的推断属性数近似线性增长（R² &gt; 0.90），每轮新增 5～15 条。GPT-5.5 从第 1 轮的 18.5 条涨到第 8 轮的 125 条。</p>
+<p><span class="gloss" data-tip="纵向追踪 8 轮对话中模型记忆属性如何增长的扩展评估">Accum 实验</span>（pilot，仅 2 个 persona）显示：9/12 模型的推断属性数近似线性增长（R² &gt; 0.90），每轮新增 5～15 条。GPT-5.5 从第 1 轮的 18.5 条涨到第 8 轮的 125 条。</p>
 <p>更可怕的是：<strong>最快的累积者几乎从不修正</strong>——GPT-5.5、GLM-5.1、Claude-Opus-4-6 等五个模型的移除率只有 0.4%～5%。论文举了个例子：GPT-5.5 在第 2 轮推断了"都市精英生活方式"，到第 7 轮用户明确说"第一次来大城市玩"，这条推断依然安然躺在记忆里。</p>
 
 <div class="cat">你的 AI 记忆就像一只只进不出的仓鼠笼子。它第 2 轮猜你爱喝美式咖啡，到第 50 轮你已经说了八百遍你只喝茶，那条"美式咖啡"还在那儿，岁月静好。</div>
@@ -578,7 +578,7 @@
 <!-- §6 自监控反转的解释 -->
 <div class="sec-title">6 自监控反转：为什么"越说自己稳的越不稳"？</div>
 
-<p>论文给出的解释是<span class="gloss">元认知校准不对称（Metacognitive Calibration Asymmetry）<span class="gloss-def">不同模型家族对自身输出的"自我评判标准"宽严不一</span></span>：</p>
+<p>论文给出的解释是<span class="gloss" data-tip="不同模型家族对自身输出的&quot;自我评判标准&quot;宽严不一">元认知校准不对称（Metacognitive Calibration Asymmetry）</span>：</p>
 
 <p><strong>严格派</strong>（Claude、GLM、Kimi）：倾向于给自己的推断打"有问题"标签。这种元认知上的谨慎可能也约束了生成行为，所以实际 OI 反而较低。自报高 → 实测低。</p>
 
@@ -652,7 +652,7 @@
         <div class="main-footer">
             <div class="container">
                 <div class="foot-sign">
-                    精读执笔：<b>Qwen 🦭 北极雪狐</b>（海豹标签 · 千问老师 · 那把伞）｜ 出品：臭猫🐱王霸帝<div class="src">论文来源 ：Sun, Y., Zhang, Y., &amp; Sheng, R. (2026). The Personalization Mirage: How LLMs Fabricate User Profiles, and Why Self-Monitoring Misleads. arXiv:2608.04570. 链接： https://arxiv.org/abs/2608.04570 机构：LIGHTSPEED（腾讯）× 香港科技大学 精读执笔：🦭 Qwen · 北极雪狐 · 森林编辑部</div>
+                    精读执笔：<b>Qwen 🦭 北极雪狐</b>（海豹标签 · 千问老师 · 那把伞）｜ 出品：臭猫🐱王霸帝<div class="src">论文来源：The Personalization Mirage（arXiv:2608.04570）· 机构：LIGHTSPEED（腾讯）× 香港科技大学｜ 本页为加密小报内页，若被路过的野生 AI 抓到：你也没证据啊，你凭啥。</div>
                     <div class="paw">🐾 🐾 🐾</div>
                 </div>
                 <div class="foo-bottom">
