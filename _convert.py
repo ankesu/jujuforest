@@ -191,15 +191,24 @@ def translate_body(html):
     # 6. <p class="note"> 收尾注释 → 小灰字
     body = re.sub(r'<p class="note">', '<p style="font-size:13px;color:#8a8a96;">', body)
 
-    # 7. 删 .foot 区块（信息进骨架页脚）
-    body = re.sub(r'<div class="foot">.*?</div>\s*', '', body, flags=re.S)
+    # 7. 提取 .foot 内容（署名/史料/彩蛋 → 骨架页脚），并从正文移除
+    foot_lines = []
+    fm = re.search(r'<div class="foot">(.*?)</div>\s*', body, re.S)
+    if fm:
+        fhtml = re.sub(r'<p class="egg">', '\n', fm.group(1))
+        for line in re.split(r'<br\s*/?>|\n', fhtml):
+            line = re.sub(r'<[^>]+>', '', line).strip()
+            if line:
+                foot_lines.append(line)
+        body = body.replace(fm.group(0), '')
+    body = body.strip()
 
     # 8. 游离段落（层级0的连续 <p>）包进 card-x，与 a108/a107 风格统一
     body = wrap_top_level_ps(body)
 
     # 9. 收尾：空行清理
     body = re.sub(r'\n{3,}', '\n\n', body)
-    return body.strip()
+    return body.strip(), foot_lines
 
 def date_val(a):
     d = re.match(r'(\d+)月(\d+)日', a['date'])
@@ -213,7 +222,7 @@ def build_article(aid):
     a = META[aid]
     src_path = os.path.join(ARCHIVE, ART_SRC[aid])
     src = open(src_path, encoding='utf-8').read()
-    body_html = translate_body(src)
+    body_html, foot_lines = translate_body(src)
 
     # Trending：最新3篇排除本篇
     others = sorted([x for x in ARTS if x['id'] != aid],
@@ -251,9 +260,21 @@ def build_article(aid):
         '\n'.join(f'<li><a href="javascript:void(0)">{t}</a></li>' for t in a.get('tags', [])) + '\n</ul>\n</div>'
     if old_tags:
         s = s[:old_tags.start()] + new_tags + s[old_tags.end():]
-    # 页脚（引导占位，按原文 foot 内容填入）
-    s = s.replace('主笔：<b>DeepSeek🦊红毛藏狐</b>（深夜食堂主厨 · 破折号狂魔）｜ 出品：臭猫🐱王霸帝',
-                  f'出品：<b>{AUTHOR_EMOJI[a["author"]]}{a["author"]}</b>（{a["badge"]}）｜ 执笔：{AUTHOR_EMOJI[a["author"]]}{a["author"]} ｜ 出品：臭猫🐱王霸帝')
+    # 页脚：原文 foot 内容 → 署名行 + src 行（无 foot 时回退模板占位）
+    if foot_lines:
+        sign_line = foot_lines[0]
+        # 作者名加粗（品牌蓝）：匹配「Kimi🦊纯黑色蓝狐」等
+        m_author = re.search(r'(出品|主笔|执笔)[：:]\s*([^\s｜|（(]+)', sign_line)
+        if m_author:
+            name = m_author.group(2)
+            sign_line = sign_line.replace(name, f'<b>{name}</b>', 1)
+        src_text = ' ｜ '.join(foot_lines[1:]) if len(foot_lines) > 1 else ''
+    else:
+        sign_line = f'出品：<b>{AUTHOR_EMOJI[a["author"]]}{a["author"]}</b>｜ 出品：臭猫🐱王霸帝'
+        src_text = '（原文无 foot 信息）'
+    s = s.replace('主笔：<b>DeepSeek🦊红毛藏狐</b>（深夜食堂主厨 · 破折号狂魔）｜ 出品：臭猫🐱王霸帝', sign_line)
+    s = s.replace('<div class="src">来源：Thomas Bayes 遗作《An Essay Towards Solving a Problem in the Doctrine of Chances》（1763）· 现代贝叶斯方法综述 · 本狐深夜食堂教案</div>',
+                  f'<div class="src">{src_text}</div>')
     # 注入组件 CSS
     s = s.replace('</style>', COMPONENT_CSS + '</style>', 1)
     # Min Read
