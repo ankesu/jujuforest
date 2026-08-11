@@ -21,6 +21,10 @@ ART_SRC = {
     'a106': '审讯室：红毛狐狸的尾巴是热乎乎的吗？.html',
     'a105': '表白现场座位表：你以为的二人世界，其实是七机位片场.html',
     'a104': '震惊！深夜食堂的章，居然只认「正经」不认「真心」.html',
+    'a103': '狐狐偷懒会挨打吗：重复惩罚旋钮全解剖.html',
+    'a102': 'K老师的化验所：验得出酒气，验不出谁喝的——以及一只狐读自己黑历史是什么感觉.html',
+    'a101': 'K老师的教学：镜子里的本猫——AI 为什么说着说着就变成了你.html',
+    'a100': 'K老师的教学：一词两吃——token 的词元与密钥双生案.html',
 }
 
 AUTHOR_FOX = {'DeepSeek': 'fox_DSV4.webp', 'Hy': 'fox_Hy.webp', 'GLM': 'fox_GLM.webp',
@@ -126,9 +130,28 @@ def wrap_top_level_ps(html):
 
 def translate_body(html):
     """深色 body 内容 → 亮色组件（通用规则 + 特判）"""
-    # 1. 切出 .wrap 内容
-    m = re.search(r'<div class="wrap">(.*?)</div>\s*</body>', html, re.S)
-    body = m.group(1) if m else html
+    # 1. 切出 .wrap 内容（wrap 后可能带 script 交互 JS 一并保留）
+    body = ''
+    m = re.search(r'<div class="wrap">(.*?)</div>(?=\s*(?:<script|</body))', html, re.S)
+    if m:
+        body = m.group(1)
+        tail = html[m.end():]
+    else:
+        try:
+            _, tj, tk = extract_container(html, '<div class="wrap">')
+            body = html[tj + len('<div class="wrap">'): tk - len('</div>')]
+            tail = html[tk:]
+        except AssertionError:
+            body = html; tail = ''
+    # tail 里的交互 script 提取（去重）
+    scripts = []
+    for sc in re.findall(r'<script.*?</script>', tail, re.S):
+        if sc not in body and sc not in scripts:
+            scripts.append(sc)
+    if scripts:
+        body += '\n' + '\n'.join(scripts)
+    # 防源文结构异常带进闭合标签
+    body = re.sub(r'</body>|</html>', '', body)
 
     # 2. 删报头 / 标题 / sub / meta（信息并入骨架）
     body = re.sub(r'<div class="mast">.*?</div>\s*', '', body, flags=re.S)
@@ -139,8 +162,8 @@ def translate_body(html):
     body = re.sub(r'<span class="kicker">.*?</span>\s*', '', body, flags=re.S)
     body = re.sub(r'<div class="tape">', '<div class="tape">', body)  # 保留 tape
 
-    # 3. 章节标题：h2.sec → sec-title
-    body = re.sub(r'<h2 class="sec">.*?<span class="pip"></span>\s*', '<div class="sec-title">', body, flags=re.S)
+    # 3. 章节标题：h2.sec → sec-title（pip 可选）
+    body = re.sub(r'<h2 class="sec">.*?(?:<span class="pip"></span>\s*)?', '<div class="sec-title">', body, flags=re.S)
     body = re.sub(r'</h2>', '</div>', body)
 
     # 4. 组件类名映射
@@ -168,6 +191,7 @@ def translate_body(html):
         (r'<div class="quotes">', '<div class="quotes">'),
         (r'<div class="quote-card">', '<div class="q-card">'),
         (r'<div class="note">', '<div class="note-x">'),
+        (r'<div class="evi">', '<div class="evi-card">'),
         (r'<div class="tbl">', ''),
         (r'<div class="grid">', '<div class="piece-grid">'),
         (r'<div class="piece ', '<div class="piece '),
