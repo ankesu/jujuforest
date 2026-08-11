@@ -696,7 +696,7 @@ function makeCard(a,flip){
 /* ===== 阅读窗（承重墙原样保留） ===== */
 /* 已换皮内页登记册：有独立新内页的文章整页跳转，其余走旧 iframe 解密阅读窗。
    批量换皮时每完成一篇就把 id 加进来（文件名 = id + '.html'）。 */
-var NEW_INNER_PAGES={a108:1,a107:1};
+var NEW_INNER_PAGES={a108:1,a107:1,a106:1};
 function openArticle(a){
   if(NEW_INNER_PAGES[a.id]){ window.location.href=a.id+'.html'; return; }
   var rv=document.getElementById('rv'),ri=document.getElementById('ri');
