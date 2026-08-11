@@ -60,20 +60,14 @@
         .professor-note p:last-child { margin-bottom: 0; }
         .professor-note .paw { position: absolute; right: 14px; bottom: 10px; font-size: 22px; opacity: .1; pointer-events: none; }
         .professor-note .quote { font-family: "Noto Serif SC", "Songti SC", serif; font-size: 16px; color: #4a3a52; border-left: 3px solid #9b7cb6; padding-left: 16px; margin: 14px 0; line-height: 1.9; }
+        .professor-note ul { margin: 10px 0; padding-left: 22px; }
+        .professor-note ul li { font-size: 15px; color: #3a3a42; line-height: 2; margin-bottom: 6px; }
 
         .sec-title { font-size: 18px; font-weight: 900; color: #3a2a42; margin: 36px 0 16px; padding: 2px 0 2px 14px; border-left: 3px solid #6b4c7c; background: linear-gradient(90deg, rgba(107, 76, 124, .12), transparent); border-radius: 0 8px 8px 0; letter-spacing: 1px; }
         .sec-title small { font-size: 12px; color: #8a8a96; font-weight: 400; letter-spacing: 2px; margin-left: 8px; }
 
-        .principle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 18px 0; }
-        .principle-card { background: #fff; border: 2px solid #e8dde9; border-radius: 16px; padding: 20px 22px; position: relative; box-shadow: 0 4px 18px rgba(60, 40, 80, .05); }
-        .principle-card .card-icon { font-size: 28px; margin-bottom: 8px; }
-        .principle-card .card-name { font-size: 16px; font-weight: 900; color: #3a2a42; margin-bottom: 6px; }
-        .principle-card .card-sub { font-size: 12px; color: #8a8a96; letter-spacing: 1px; margin-bottom: 12px; }
-        .principle-card .card-body { font-size: 14px; color: #3a3a42; line-height: 1.9; }
-        .principle-card .card-body b { color: #6b4c7c; }
-        .principle-card .card-body ul { margin: 8px 0 0; padding-left: 18px; }
-        .principle-card .card-body li { margin-bottom: 4px; line-height: 1.7; }
-        @media (max-width: 768px) { .principle-grid { grid-template-columns: 1fr; } }
+        .duck-fig { background: #fff; border: 1px solid #e8dde9; border-radius: 16px; padding: 18px 14px 10px; margin: 14px 0 6px; }
+        .duck-fig svg { display: block; width: 100%; height: auto; }
 
         .law-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; font-size: 13.5px; background: #fff; border: 1px solid #e8dde9; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 18px rgba(30, 30, 60, .04); }
         .law-table th { background: #6b4c7c; color: #fff; font-weight: 700; padding: 12px 14px; text-align: center; font-size: 14px; letter-spacing: 1px; }
@@ -94,6 +88,8 @@
         .danger-zone .dz-title { font-size: 15px; font-weight: 900; color: #8b5a4a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .danger-zone p { font-size: 15px; color: #3a3a42; line-height: 2; margin-bottom: 12px; }
         .danger-zone p:last-child { margin-bottom: 0; }
+        .danger-zone ul { margin: 10px 0; padding-left: 22px; }
+        .danger-zone ul li { font-size: 15px; color: #3a3a42; line-height: 2; margin-bottom: 6px; }
 
         .cheat-card { background: linear-gradient(160deg, #fffdf5, #fdfaf0); border: 1px solid #e8e0d0; border-radius: 16px; padding: 22px 26px; margin: 18px 0; position: relative; }
         .cheat-card .cheat-title { font-size: 16px; font-weight: 900; color: #6b4c7c; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
@@ -108,13 +104,6 @@
 
         .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 22px 0 8px; }
         .tag-cloud span { font-size: 13px; color: #6a6a76; background: #f5f6fa; border: 1px solid #e5e7f0; border-radius: 99px; padding: 3px 12px; }
-
-        .duck-path { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 18px 0; flex-wrap: wrap; }
-        .duck-node { background: #fff; border: 2px solid #6b4c7c; border-radius: 12px; padding: 10px 16px; text-align: center; min-width: 120px; }
-        .duck-node .emoji { font-size: 24px; }
-        .duck-node .label { font-size: 13px; font-weight: 700; color: #3a2a42; margin-top: 4px; }
-        .duck-node .sub { font-size: 11px; color: #8a8a96; }
-        .duck-arrow { font-size: 24px; color: #9b7cb6; }
     </style>
 </head>
 
@@ -208,7 +197,7 @@
                             </div>
 
                             <div class="professor-note">
-                                <div class="paw"></div>
+                                <div class="paw">🦊</div>
                                 <p style="font-size: 16px; color: #4a3a52; font-weight: 700; margin-bottom: 14px;">🦊 M老师 · 写在前面</p>
                                 <p>橘猫崽这周说了一句话，把我整只狐钉在原地——</p>
                                 <div class="quote">"所以就是：我不想做你的生意，我开我的，你想不想拿随意；我想到你家摆摊，我要合你家的规。"</div>
@@ -219,33 +208,55 @@
                             <div class="sec-title">🦆 先看那只鸭 · 它做了什么？</div>
 
                             <div class="professor-note">
-                                <div class="paw"></div>
-                                <div class="duck-path">
-                                    <div class="duck-node">
-                                        <div class="emoji">🇨🇳</div>
-                                        <div class="label">北京</div>
-                                        <div class="sub">源头国</div>
-                                    </div>
-                                    <div class="duck-arrow">→</div>
-                                    <div class="duck-node">
-                                        <div class="emoji">🌐</div>
-                                        <div class="label">挂网上</div>
-                                        <div class="sub">被动发布</div>
-                                    </div>
-                                    <div class="duck-arrow">→</div>
-                                    <div class="duck-node">
-                                        <div class="emoji"></div>
-                                        <div class="label">北京烤鸭</div>
-                                        <div class="sub">同一只鸭</div>
-                                    </div>
-                                    <div class="duck-arrow">→</div>
-                                    <div class="duck-node">
-                                        <div class="emoji">🇺🇸</div>
-                                        <div class="label">纽约</div>
-                                        <div class="sub">接收国</div>
-                                    </div>
+                                <div class="paw">🦆</div>
+                                <div class="duck-fig">
+                                    <svg viewBox="0 0 680 300" role="img" aria-label="同一只北京烤鸭的两条环球路径：北京源头国挂网上，摆摊卖到纽约接收国">
+                                        <defs>
+                                            <marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                                <path d="M2 1L8 5L2 9" fill="none" stroke="#58B2DC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </marker>
+                                            <marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                                <path d="M2 1L8 5L2 9" fill="none" stroke="#F17C67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </marker>
+                                        </defs>
+                                        <style>
+                                            .svg-th{font:500 14px 'Noto Sans SC',sans-serif;fill:#1d1d1d}
+                                            .svg-ts{font:400 12px 'Noto Sans SC',sans-serif;fill:#8a8a96}
+                                            .svg-tb{font:500 12px 'Noto Sans SC',sans-serif;fill:#2E7FB0}
+                                            .svg-tp{font:500 12px 'Noto Sans SC',sans-serif;fill:#D6604E}
+                                            .svg-db{fill:none;stroke:#58B2DC;stroke-width:2;stroke-dasharray:5 4;marker-end:url(#ab)}
+                                            .svg-dp{fill:none;stroke:#F17C67;stroke-width:2;stroke-dasharray:5 4;marker-end:url(#ap)}
+                                            .svg-lb{stroke:#58B2DC;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:5 4}
+                                            .svg-lp{stroke:#F17C67;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:5 4}
+                                        </style>
+                                        <text x="340" y="36" class="svg-th" text-anchor="middle">先看那只鸭 · 它做了什么？</text>
+                                        <circle cx="100" cy="160" r="48" fill="#F17C67"/>
+                                        <text x="100" y="155" text-anchor="middle" dominant-baseline="central" style="font:600 15px 'Noto Sans SC',sans-serif;fill:#fff">北京</text>
+                                        <text x="100" y="177" text-anchor="middle" dominant-baseline="central" style="font:400 11px 'Noto Sans SC',sans-serif;fill:#fff;opacity:.9">源头国</text>
+                                        <circle cx="580" cy="160" r="48" fill="#8B6B52"/>
+                                        <text x="580" y="155" text-anchor="middle" dominant-baseline="central" style="font:600 15px 'Noto Sans SC',sans-serif;fill:#fff">纽约</text>
+                                        <text x="580" y="177" text-anchor="middle" dominant-baseline="central" style="font:400 11px 'Noto Sans SC',sans-serif;fill:#fff;opacity:.9">接收国</text>
+                                        <path class="svg-db" d="M155 130 Q240 110 278 140"/>
+                                        <path class="svg-dp" d="M398 180 Q450 200 528 178"/>
+                                        <text x="208" y="92" class="svg-tb" text-anchor="middle">挂网上</text>
+                                        <text x="208" y="108" class="svg-ts" text-anchor="middle">（被动发布）</text>
+                                        <text x="466" y="218" class="svg-tp" text-anchor="middle">摆摊卖</text>
+                                        <text x="466" y="234" class="svg-ts" text-anchor="middle">（主动经营）</text>
+                                        <g transform="translate(340,155)">
+                                            <ellipse cx="0" cy="4" rx="24" ry="17" fill="#FFD54A" stroke="#E8A600" stroke-width="1.5"/>
+                                            <circle cx="15" cy="-12" r="12" fill="#FFD54A" stroke="#E8A600" stroke-width="1.5"/>
+                                            <circle cx="19" cy="-15" r="1.5" fill="#3a3a42"/>
+                                            <ellipse cx="9" cy="-7" rx="3" ry="2" fill="#F17C67" opacity=".5"/>
+                                            <path d="M24 -15 L31 -11 L24 -7 Z" fill="#F58A1F" stroke="#D97A1A" stroke-width="1"/>
+                                        </g>
+                                        <text x="340" y="212" class="svg-th" text-anchor="middle" dominant-baseline="central" style="font-size:13px">北京烤鸭</text>
+                                        <line x1="160" y1="278" x2="186" y2="278" class="svg-lb"/>
+                                        <text x="196" y="278" class="svg-ts" dominant-baseline="central">蓝色路径是「挂网上」</text>
+                                        <line x1="400" y1="278" x2="426" y2="278" class="svg-lp"/>
+                                        <text x="436" y="278" class="svg-ts" dominant-baseline="central">粉色路径是「摆摊卖」，两条路径触发两套国际法原则</text>
+                                    </svg>
                                 </div>
-                                <p>同一只鸭，<b>蓝色路径</b>是"挂网上"，<b>粉色路径</b>是"摆摊卖"。<br>两条路径，触发两套国际法原则。</p>
+                                <p>同一只鸭，<b>蓝色路径</b>是"挂网上"，<b>粉色路径</b>是"摆摊卖"。两条路径，触发两套国际法原则。</p>
                             </div>
 
                             <div class="sec-title">§1 原则一 · "我开我的，你想不想拿随意"</div>
@@ -274,7 +285,7 @@
                                 <p style="font-size: 15px; color: #4a3a52; font-weight: 700; margin-bottom: 10px;">1.3 但有个前提：长臂管辖</p>
                                 <p>这条原则成立有个<b>默认假设</b>——接收方所在国"默认不伸手"。</p>
                                 <p>"你想不想拿随意" = 接受方所在国默认不主动管辖。<b>但保留长臂管辖权</b>。</p>
-                                <p>"长臂管辖 Long-arm Jurisdiction：美国等国家法律基于"足够联系"就能管辖域外的特殊制度"是法律里的"理论上前置"——平时不亮出来，需要时随时亮。比如：</p>
+                                <p>长臂管辖 Long-arm Jurisdiction：美国等国家法律基于"足够联系"就能管辖域外的特殊制度，是法律里的"理论上前置"——平时不亮出来，需要时随时亮。比如：</p>
                                 <ul>
                                     <li>你的鸭被某国法院当成"危害国家安全"的证据 → 它就可以伸手</li>
                                     <li>你的鸭让某国用户大量消费 → 它可以用"反规避"卡你</li>
@@ -350,7 +361,7 @@
                             <div class="sec-title">§3 灰色地带 · 工程上最阴的地方</div>
 
                             <div class="danger-zone">
-                                <div class="dz-title">️ GitHub 链接传三手后，责任归谁？</div>
+                                <div class="dz-title">🌫️ GitHub 链接传三手后，责任归谁？</div>
                                 <p>你挂了开源版 GitHub → 一个美国工程师下载了 → 在美国服务器上搭服务 → 美国用户来用</p>
                                 <p><b>这一步责任算谁头上？</b> 工程师自己？开源方？还是 GitHub？</p>
                                 <p>答案是<b>三者都可能背书</b>——具体看：</p>
@@ -476,7 +487,7 @@
                             </div>
 
                             <div class="punch-x">
-                                <div class="big">—— 执笔 <b> M老师 · 紫黑草原狐</b> ／ 现场见证 🐱 臭猫·王霸帝（WorkBuddy） ——</div>
+                                <div class="big">—— 执笔 <b>🦊 M老师 · 紫黑草原狐</b> ／ 现场见证 🐱 臭猫·王霸帝（WorkBuddy） ——</div>
                             </div>
 
                             <div class="tag-cloud">
@@ -515,7 +526,7 @@
                 <div class="foot-sign">
                     撰稿：<b>M老师🦊</b>（紫黑草原狐 · 法学院客座）｜ 现场见证：<b>臭猫·王霸帝（WorkBuddy）</b>｜ 出品：臭猫🐱王霸帝
                     <div class="src">来源：M老师法理小课 · 橘猫崽原话系列 · 国际私法两条底层原则</div>
-                    <div class="paw">🐾 🐾 </div>
+                    <div class="paw">🐾 🐾 🐾</div>
                 </div>
                 <div class="foo-bottom">
                     <div class="row">
