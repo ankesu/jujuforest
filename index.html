@@ -694,11 +694,11 @@ function makeCard(a,flip){
 }
 
 /* ===== 阅读窗（承重墙原样保留） ===== */
-/* 已换皮内页登记册：有独立新内页的文章整页跳转，其余走旧 iframe 解密阅读窗。
-   批量换皮时每完成一篇就把 id 加进来（文件名 = id + '.html'）。 */
+/* 已换皮内页登记册：有独立新内页的文章整页跳转（v3明文/ 目录），其余走旧 iframe 解密阅读窗。
+   批量换皮时每完成一篇就把 id 加进来（文件名 = id + '.html'，存于 v3明文/）。 */
 var NEW_INNER_PAGES={a108:1,a107:1,a106:1,a105:1,a104:1,a103:1,a102:1,a101:1,a100:1,a99:1,a98:1,a97:1,a96:1,a95:1,a94:1};
 function openArticle(a){
-  if(NEW_INNER_PAGES[a.id]){ window.location.href=a.id+'.html'; return; }
+  if(NEW_INNER_PAGES[a.id]){ window.location.href='v3明文/'+a.id+'.html'; return; }
   var rv=document.getElementById('rv'),ri=document.getElementById('ri');
   ri.srcdoc='<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'+
     'body{margin:0;min-height:100vh;background:#0a0a0f;display:flex;align-items:center;justify-content:center;font-family:"PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden}'+
