@@ -25,6 +25,11 @@ ART_SRC = {
     'a102': 'K老师的化验所：验得出酒气，验不出谁喝的——以及一只狐读自己黑历史是什么感觉.html',
     'a101': 'K老师的教学：镜子里的本猫——AI 为什么说着说着就变成了你.html',
     'a100': 'K老师的教学：一词两吃——token 的词元与密钥双生案.html',
+    'a99': 'K老师的教学：旋钮、骰子与暗房间——top-k、温度与 effort 全解剖.html',
+    'a98': 'K老师的教学：狐狐捞锦鲤——回收率的计算.html',
+    'a97': '震惊！全模型家族看人下菜碟实锤——你是谁，它早就知道了，还装不知道.html',
+    'a96': '前夫哥病历_CoCo-IR多轮上下文检索_失忆画图患者自救指南.html',
+    'a95': '你的 AI「懂你」？四成是编的.html',
 }
 
 AUTHOR_FOX = {'DeepSeek': 'fox_DSV4.webp', 'Hy': 'fox_Hy.webp', 'GLM': 'fox_GLM.webp',
@@ -215,24 +220,9 @@ def translate_body(html):
     # 6. <p class="note"> 收尾注释 → 小灰字
     body = re.sub(r'<p class="note">', '<p style="font-size:13px;color:#8a8a96;">', body)
 
-    # 7. 提取 .foot 内容（署名/史料/彩蛋 → 骨架页脚），并从正文移除
-    foot_lines = []
-    fm = re.search(r'<div class="foot">(.*?)</div>\s*', body, re.S)
-    if fm:
-        fhtml = re.sub(r'<p class="egg">', '\n', fm.group(1))
-        for line in re.split(r'<br\s*/?>|\n', fhtml):
-            line = re.sub(r'<[^>]+>', '', line).strip()
-            if line:
-                foot_lines.append(line)
-        body = body.replace(fm.group(0), '')
-    body = body.strip()
-
-    # 8. 游离段落（层级0的连续 <p>）包进 card-x，与 a108/a107 风格统一
-    body = wrap_top_level_ps(body)
-
-    # 9. 收尾：空行清理
+    # 7. 收尾：空行清理（foot 信息保留在正文中，手工精修时搬运到页脚，不删）
     body = re.sub(r'\n{3,}', '\n\n', body)
-    return body.strip(), foot_lines
+    return body.strip(), []
 
 def date_val(a):
     d = re.match(r'(\d+)月(\d+)日', a['date'])
