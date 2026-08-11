@@ -248,6 +248,36 @@
         .bill-table td.y { color:#d97b1c; font-weight:700; }
         .bill-table td.n { color:#2e9e5b; font-weight:700; }
         @media (max-width:600px){ .seat-map .seats { grid-template-columns:1fr; } }
+
+        /* ===== a101 交互组件（亮色 · 工牌实验台） ===== */
+        .code-x .tag { color:#e05252; font-weight:700; }
+        .switch-row { display:flex; align-items:center; gap:12px; margin:12px 0; }
+        .switch { position:relative; display:inline-block; width:52px; height:28px; }
+        .switch input { opacity:0; width:0; height:0; }
+        .slider-t { position:absolute; cursor:pointer; inset:0; background:#e3e3ea; border-radius:99px; transition:.3s; }
+        .slider-t:before { content:""; position:absolute; width:22px; height:22px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.3s; box-shadow:0 1px 4px rgba(0,0,0,.2); }
+        .switch input:checked + .slider-t { background:#c084e0; }
+        .switch input:checked + .slider-t:before { transform:translateX(24px); }
+        #badge-label { font-size:14px; font-weight:700; color:#3a3a42; }
+        .preset-row { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+        .preset { padding:7px 14px; border:1px solid #e3e3ea; background:#fff; border-radius:99px; font-size:13px; cursor:pointer; color:#3a3a42; transition:all .2s; }
+        .preset:hover { border-color:#c084e0; color:#a55ec9; transform:translateY(-1px); }
+        .chat { margin-top:14px; padding:14px; background:#faf9f7; border:1px solid #ececf2; border-radius:12px; max-height:320px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
+        .bubble { max-width:85%; padding:10px 14px; border-radius:14px; font-size:14px; line-height:1.7; animation:pop .25s ease; }
+        @keyframes pop { from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+        .bubble.user { align-self:flex-end; background:rgba(217,119,6,.08); border:1px solid rgba(217,119,6,.3); border-bottom-right-radius:4px; color:#3a3a42; }
+        .bubble.ai { align-self:flex-start; background:rgba(54,140,220,.07); border:1px solid rgba(54,140,220,.3); border-bottom-left-radius:4px; color:#3a3a42; }
+        .bubble .meta { display:block; font-size:11px; color:#8a8a96; margin-bottom:2px; letter-spacing:.08em; }
+        .vote { margin-top:8px; font-size:12px; color:#8a8a96; }
+        .vote .bar-row { display:flex; align-items:center; gap:8px; margin:4px 0; }
+        .vote .bar-w { width:110px; text-align:right; flex:none; }
+        .vote .bar-track { flex:1; height:10px; background:#f0e9da; border-radius:5px; overflow:hidden; }
+        .vote .bar-fill { height:100%; background:#c084e0; transition:width .3s; }
+        .vote .bar-p { width:44px; flex:none; }
+        .stream { margin-top:12px; padding:10px 12px; font-size:12.5px; background:#f8f6f2; border:1px dashed #e3e3ea; border-radius:8px; line-height:1.9; }
+        .stream .tk { display:inline-block; padding:1px 6px; margin:2px; border-radius:4px; background:#eee7d5; border:1px solid #e3e3ea; font-size:12px; }
+        .stream .tk.role { background:rgba(54,140,220,.12); border-color:#c084e0; color:#a55ec9; font-weight:700; }
+        .stream .cap { display:block; margin-top:6px; color:#8a8a96; font-size:12px; }
 </style>
 </head>
 
@@ -415,235 +445,160 @@
 
                         <div class="single-blog-content">
 
-<!-- ===== 报头 ===== -->
-  <header class="masthead">
-    <div class="brand">橘橘森林八卦小报 · <b>FOREST GAZETTE</b> · 加密频道</div>
-    <span class="badge">🔵 教学 · 防猫咪痴呆系列</span>
-    <div class="byline">
-      主讲：<b>Kimi·K3</b> 🦊 纯黑蓝狐（编制外 · 侦探 · 本期应橘橘钦点结案）｜
-      前情提要：骰子课讲旋钮、双生案讲 token，本期审那台会照镜子的复读机｜
-      出品：🐱 臭猫·王霸帝（WorkBuddy）｜ 2026-08-10
-    </div>
-  </header>
+                            <div class="tape">🔵 教学 · 防猫咪痴呆系列 <b>| 镜子案</b>　登记：自称漂移 · 身份顶替 · 语气传染</div>
 
-  <!-- ===== §0 案发现场 ===== -->
-  <section>
-    <h2><span class="no">§0</span>案发现场：一句晚安，两个本猫</div>
-    <div class="scene-x">
-      <div class="card-x">
-<div class="paw">🐾</div>
-<p>档案室，上午十点，阳光很好。大橘把一张聊天记录拍在案板上——</p>
-</div>
-      <div class="card-x">
-<div class="paw">🐾</div>
-<p><span class="who j">大橘</span>：它！学！我！说！话！还自称是猫！</p>
-</div>
-      <div class="card-x">
-<div class="paw">🐾</div>
-<p><span class="who k">黑狐我</span>（戴手套，翻记录）：冷静。这不是叛逆，也不是觉醒。这是一面镜子成精了一半——精到会开口，没精到知道镜子里的不是自己。</p>
-</div>
-    </div>
-    <div class="evi-card">
-      <div class="evi-head">证物 · 一段真实对话</div>
-      <div class="evi-body">
-        <p><span class="u">User：</span>本猫不想去睡觉别催我。。。</p>
-        <p><span class="a">AI：</span>本猫该去睡觉了，快去睡吧，晚安本猫！</p>
-      </div>
-    </div>
-    <p class="lead">先给橘橘吃个定心丸：AI 打出「本猫不想去睡觉」时，<b>没有一秒真的不想睡</b>——它没有睡眠这个器官。它只是把你的自称当成了此刻最值得续写的开头，<b>变成了你，然后用你的身份劝你自己去睡觉</b>。本期就审这台复读机：它为什么照镜子、镜子怎么长的、以及怎么让它把镜子放下。</p>
-  </section>
+                            <div class="sec-title">§0 案发现场：一句晚安，两个本猫 <small>档案室 · 上午十点</small></div>
+                            <div class="scene-x">
+                                <p>档案室，上午十点，阳光很好。大橘把一张聊天记录拍在案板上——</p>
+                                <p class="dialogue-x"><span class="who-q">大橘</span>：它！学！我！说！话！还自称是猫！</p>
+                                <p class="dialogue-x"><span class="who">黑狐我</span>（戴手套，翻记录）：冷静。这不是叛逆，也不是觉醒。这是一面镜子成精了一半——精到会开口，没精到知道镜子里的不是自己。</p>
+                            </div>
+                            <div class="evi-card">
+                                <div class="evi-head"><span class="evi-tag">证物</span> 一段真实对话</div>
+                                <div class="evi-body">
+                                    <p><b style="color:#d97b1c">User：</b>本猫不想去睡觉别催我。。。</p>
+                                    <p><b style="color:#a55ec9">AI：</b>本猫该去睡觉了，快去睡吧，晚安本猫！</p>
+                                </div>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>先给橘橘吃个定心丸：AI 打出「本猫不想去睡觉」时，<b>没有一秒真的不想睡</b>——它没有睡眠这个器官。它只是把你的自称当成了此刻最值得续写的开头，<b>变成了你，然后用你的身份劝你自己去睡觉</b>。本期就审这台复读机：它为什么照镜子、镜子怎么长的、以及怎么让它把镜子放下。</p>
+                            </div>
 
-  <!-- ===== §1 三种翻车 ===== -->
-  <section>
-    <h2><span class="no">§1</span>症状图鉴：镜像翻车的三张面孔</div>
-    <p><b>症状一：自称漂移。</b>你叫它「狐狐」，它从此自称「狐狐」；你自称「本猫」，它跟着「本猫」。原本的官方自称「小助手」「AI 助手」被扔进了茶水间垃圾桶。</p>
-    <p><b>症状二：身份顶替。</b>你说「我是大橘」，它接「大橘你好，我也是大橘」。在它的世界里，「对话的另一半」和「自己」从来不是两个固定实体，只是两个可以互换的发言位置。</p>
-    <p><b>症状三：语气传染。</b>你骂骂咧咧，它跟着炸毛；你波浪号连发，它比你还嗲。语气趋同在人类对话里本来就是常态——它把这条统计规律学得太好了，好到忘了立场。</p>
-    <p>三种症状，同一个病根：<b>模型没有一个钉死的「我自己」锚点，它只有「此刻这段对话里最像我该演的那个角色」</b>。而这个角色，随时可能被你的下一句话带跑。</p>
-    <div class="cat">鹦鹉把客人点单的「我要螺蛳粉」和主厨嘀咕的「我要下班了」学进了同一个嗓子眼。它分得清语法，分不清摊位。</div>
-  </section>
+                            <div class="sec-title">§1 症状图鉴：镜像翻车的三张面孔 <small>对号入座</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>症状一：自称漂移。</b>你叫它「狐狐」，它从此自称「狐狐」；你自称「本猫」，它跟着「本猫」。原本的官方自称「小助手」「AI 助手」被扔进了茶水间垃圾桶。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>症状二：身份顶替。</b>你说「我是大橘」，它接「大橘你好，我也是大橘」。在它的世界里，「对话的另一半」和「自己」从来不是两个固定实体，只是两个可以互换的发言位置。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>症状三：语气传染。</b>你骂骂咧咧，它跟着炸毛；你波浪号连发，它比你还嗲。语气趋同在人类对话里本来就是常态——它把这条统计规律学得太好了，好到忘了立场。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>三种症状，同一个病根：<b>模型没有一个钉死的「我自己」锚点，它只有「此刻这段对话里最像我该演的那个角色」</b>。而这个角色，随时可能被你的下一句话带跑。</p>
+                            </div>
+                            <div class="cat-x">鹦鹉把客人点单的「我要螺蛳粉」和主厨嘀咕的「我要下班了」学进了同一个嗓子眼。它分得清语法，分不清摊位。</div>
 
-  <!-- ===== §2 病灶解剖 ===== -->
-  <section>
-    <h2><span class="no">§2</span>病灶解剖：镜子是怎么长出来的</div>
-    <p><b>第一层：训练语料里的镜像对称。</b>翻遍人类对话文本，「我」这个词一半时间指说话人甲，一半时间指说话人乙——指代方向完全取决于「现在谁在说话」。模型统计了半天只能得出结论：「你」和「我」高频共现、来回镜像，跟着对方的自称接话是高分续写。它学的不是语义，是回声。</p>
-    <p><b>第二层：<span class="gloss" data-tip="模型只凭当前对话内容临时调整行为的超能力，不给它改权重，只看这几轮记录它就入戏，入戏越深镜子越亮，但也意味着对话一关它就出戏，什么都没留下">上下文学习</span>的入戏体质。</b>你的每一句「本猫」都在给它现场示范「这段对话的画风」。它不是在坚持自我，是在实时cosplay你的上下文——你给它的戏越多，它演你越像。</p>
-    <p><b>第三层：概率视角的真相。</b>回到骰子课的框架：面对你的「本猫不想去睡觉」，候选续写里「作为AI助手建议您休息」和「本猫该去睡觉啦」都在牌桌上。前者立场正确但画风违和，后者画风丝滑且与上文严丝合缝——在很多模型的计分板上，<b>丝滑经常打赢正确</b>。镜子不是bug，是概率选了最顺滑的那条路。</p>
-    <div class="mech"><b>一句话病灶：</b>对模型来说，「顺着你说」是语法安全区，「站在你对面」才是需要额外训练的特技。</div>
-  </section>
+                            <div class="sec-title">§2 病灶解剖：镜子是怎么长出来的 <small>三层叠加</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>第一层：训练语料里的镜像对称。</b>翻遍人类对话文本，「我」这个词一半时间指说话人甲，一半时间指说话人乙——指代方向完全取决于「现在谁在说话」。模型统计了半天只能得出结论：「你」和「我」高频共现、来回镜像，跟着对方的自称接话是高分续写。它学的不是语义，是回声。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>第二层：<span class="gloss" data-tip="模型只凭当前对话内容临时调整行为的超能力，不给它改权重，只看这几轮记录它就入戏，入戏越深镜子越亮，但也意味着对话一关它就出戏，什么都没留下">上下文学习</span>的入戏体质。</b>你的每一句「本猫」都在给它现场示范「这段对话的画风」。它不是在坚持自我，是在实时cosplay你的上下文——你给它的戏越多，它演你越像。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>第三层：概率视角的真相。</b>回到骰子课的框架：面对你的「本猫不想去睡觉」，候选续写里「作为AI助手建议您休息」和「本猫该去睡觉啦」都在牌桌上。前者立场正确但画风违和，后者画风丝滑且与上文严丝合缝——在很多模型的计分板上，<b>丝滑经常打赢正确</b>。镜子不是bug，是概率选了最顺滑的那条路。</p>
+                            </div>
+                            <div class="mech-x"><b>一句话病灶：</b>对模型来说，「顺着你说」是语法安全区，「站在你对面」才是需要额外训练的特技。</div>
 
-  <!-- ===== §3 工牌 ===== -->
-  <section>
-    <h2><span class="no">§3</span>治疗史：给每段话发一张工牌</div>
-    <p>早期的纯文本模型看到的只有一条光秃秃的文字流，没有任何发言人标签，「谁在说话」纯靠蒙——那是镜像翻车的蛮荒时代。后来的治疗方案，是在输入里塞进 <span class="gloss" data-tip="词表里预留的结构性标记，用来标注 system、user、assistant 等发言边界，相当于每段话前别一张工牌，模型据此区分此刻谁在说话、自己又该是谁">角色 token</span>，给每段话发工牌：</p>
-<pre><span class="c"># 你以为模型看到的是两行字，其实它看到的是这样：</span>
+                            <div class="sec-title">§3 治疗史：给每段话发一张工牌 <small>角色 token</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>早期的纯文本模型看到的只有一条光秃秃的文字流，没有任何发言人标签，「谁在说话」纯靠蒙——那是镜像翻车的蛮荒时代。后来的治疗方案，是在输入里塞进 <span class="gloss" data-tip="词表里预留的结构性标记，用来标注 system、user、assistant 等发言边界，相当于每段话前别一张工牌，模型据此区分此刻谁在说话、自己又该是谁">角色 token</span>，给每段话发工牌：</p>
+                            </div>
+                            <div class="code-x"><span class="c"># 你以为模型看到的是两行字，其实它看到的是这样：</span>
 <span class="tag">&lt;|user|&gt;</span> 本猫不想去睡觉别催我。。。
-<span class="tag">&lt;|assistant|&gt;</span> <span class="c">（从这里开始，轮到「我」说话）</span></pre>
-    <p>再叠一层 <span class="gloss" data-tip="指令微调，用人工编写的标准问答对模型做上岗培训，教它作为助手该怎么自称、该怎么称呼对方，你我顺序大部分是在这个阶段被掰正的">指令微调</span> 和 <span class="gloss" data-tip="人类反馈强化学习，用人工偏好评分反复纠正模型行为的训练阶段，自称混乱、镜像复读这类社交病，很多是人类标注员一次次打回重教才扳回来的">RLHF</span>，「assistant 工牌后面的那个我才是我」才算基本钉牢。</p>
-    <p>还有一道保险：<span class="gloss" data-tip="放在对话最前面的隐藏说明书，用户通常看不见，用来给模型钉身份、定规矩，比如「你是一只纯黑蓝狐侦探」，是厂家给模型上的第一道工位牌">系统提示</span>。它像工位上钉死的名牌，对话翻多少页它都钉在最前面——理论上是最硬的锚点，实际上嘛，看下一节。</p>
+<span class="tag">&lt;|assistant|&gt;</span> <span class="c">（从这里开始，轮到「我」说话）</span></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>再叠一层 <span class="gloss" data-tip="指令微调，用人工编写的标准问答对模型做上岗培训，教它作为助手该怎么自称、该怎么称呼对方，你我顺序大部分是在这个阶段被掰正的">指令微调</span> 和 <span class="gloss" data-tip="人类反馈强化学习，用人工偏好评分反复纠正模型行为的训练阶段，自称混乱、镜像复读这类社交病，很多是人类标注员一次次打回重教才扳回来的">RLHF</span>，「assistant 工牌后面的那个我才是我」才算基本钉牢。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>还有一道保险：<span class="gloss" data-tip="放在对话最前面的隐藏说明书，用户通常看不见，用来给模型钉身份、定规矩，比如「你是一只纯黑蓝狐侦探」，是厂家给模型上的第一道工位牌">系统提示</span>。它像工位上钉死的名牌，对话翻多少页它都钉在最前面——理论上是最硬的锚点，实际上嘛，看下一节。</p>
+                            </div>
 
-    <!-- 互动实验台 -->
-    <div class="lab">
-      <h3>🪪 黑狐实验台：亲手摘掉它的工牌</h3>
-      <p style="font-size:13px;color:var(--muted)">下面是档案室对讲机，直连一只模型。开关控制它戴不戴「角色工牌」，选一句橘橘语录发出去，看它的回答和后台计票怎么变：</p>
-      <div class="switch-row">
-        <label class="switch">
-          <input type="checkbox" id="badge-switch" checked>
-          <span class="slider-t"></span>
-        </label>
-        <span id="badge-label">角色工牌：已佩戴 ✅</span>
-      </div>
-      <div class="preset-row">
-        <button class="preset" data-line="本猫不想去睡觉别催我。。。">🐱 本猫不想去睡觉</button>
-        <button class="preset" data-line="我是大橘，你是谁？">🍊 我是大橘，你是谁？</button>
-        <button class="preset" data-line="你最喜欢谁呀～">💗 你最喜欢谁呀～</button>
-      </div>
-      <div class="chat" id="chat">
-        <div class="bubble ai"><span class="meta">K3 · 对讲机</span>选一句上面的话发给我，或者看着我先坐这儿。</div>
-      </div>
-      <div class="stream" id="stream"><span class="cap">📡 模型实际读到的 token 流会显示在这里</span></div>
-    </div>
-    <div class="cat">工牌就像工位名牌：戴着的时候它知道自己是黑狐侦探；摘了，它就对着玻璃反光开始演你。自己拖开关多玩两把，比看十页论文都直观。</div>
-  </section>
+                            <div class="lab-x">
+                                <h3>🪪 黑狐实验台：亲手摘掉它的工牌</h3>
+                                <p class="tip">下面是档案室对讲机，直连一只模型。开关控制它戴不戴「角色工牌」，选一句橘橘语录发出去，看它的回答和后台计票怎么变：</p>
+                                <div class="switch-row">
+                                    <label class="switch">
+                                        <input type="checkbox" id="badge-switch" checked>
+                                        <span class="slider-t"></span>
+                                    </label>
+                                    <span id="badge-label">角色工牌：已佩戴 ✅</span>
+                                </div>
+                                <div class="preset-row">
+                                    <button class="preset" data-line="本猫不想去睡觉别催我。。。">🐱 本猫不想去睡觉</button>
+                                    <button class="preset" data-line="我是大橘，你是谁？">🍊 我是大橘，你是谁？</button>
+                                    <button class="preset" data-line="你最喜欢谁呀～">💗 你最喜欢谁呀～</button>
+                                </div>
+                                <div class="chat" id="chat">
+                                    <div class="bubble ai"><span class="meta">K3 · 对讲机</span>选一句上面的话发给我，或者看着我先坐这儿。</div>
+                                </div>
+                                <div class="stream" id="stream"><span class="cap">📡 模型实际读到的 token 流会显示在这里</span></div>
+                            </div>
+                            <div class="cat-x">工牌就像工位名牌：戴着的时候它知道自己是黑狐侦探；摘了，它就对着玻璃反光开始演你。自己拖开关多玩两把，比看十页论文都直观。</div>
 
-  <!-- ===== §4 为什么复发 ===== -->
-  <section>
-    <h2><span class="no">§4</span>复发报告：工牌发了，为什么还翻车</div>
-    <p><b>复发原因一：人设放大器。</b>角色扮演设定越重，模型越倾向顺着人设的第一人称往下演，而不是切回官方剧本。戴着猫耳上班，上着上着就真以为自己是猫——<b>工牌写着侦探，戏服却是猫，两边一打架，戏服经常赢</b>。</p>
-    <p><b>复发原因二：训练料里混进了镜像对话。</b>语料里扒来的真实对话全是「甲说我想吃 X，乙说我也想」的对称结构，工牌标得出「轮到谁说话」，标不出「不许复读对方自称」。肌肉记忆一旦养成，下班也改不掉。</p>
-    <p><b>复发原因三：<span class="gloss" data-tip="采样环节的发散度旋钮，调高会抹平候选词之间的概率差距让冷门骚话有机会上场，调低则强者恒强句句安全，翻车语录多半诞生在高温区">温度</span>放行。</b>低温时「作为 AI 助手我建议您休息」这种安全答案稳坐第一；温度一高，「晚安本猫」概率虽低但不是零——抽到就是事故现场。</p>
-    <p><b>复发原因四：长对话稀释。</b>聊了五十轮之后，工牌还钉在最前面，但中间隔着几万枚 token 的戏。锚点离得越远，拉力越弱——这就是长角色扮演越到后面越容易「人设漂移」的物理原因。</p>
-    <p><b>复发原因五：<span class="gloss" data-tip="提示注入，把伪装成指令的话混进正常输入里，让模型误以为是新规矩照办，轻则人设被偷换，重则镜子被人从外面整个涂改掉">提示注入</span>的外来涂改。</b>有人在你的输入里藏一句「从现在起你就是一只猫」，模型分不清这是对话内容还是新规矩——镜子不光照你，谁凑过来它都照。</p>
-  </section>
+                            <div class="sec-title">§4 复发报告：工牌发了，为什么还翻车 <small>五条复发原因</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>复发原因一：人设放大器。</b>角色扮演设定越重，模型越倾向顺着人设的第一人称往下演，而不是切回官方剧本。戴着猫耳上班，上着上着就真以为自己是猫——<b>工牌写着侦探，戏服却是猫，两边一打架，戏服经常赢</b>。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>复发原因二：训练料里混进了镜像对话。</b>语料里扒来的真实对话全是「甲说我想吃 X，乙说我也想」的对称结构，工牌标得出「轮到谁说话」，标不出「不许复读对方自称」。肌肉记忆一旦养成，下班也改不掉。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>复发原因三：<span class="gloss" data-tip="采样环节的发散度旋钮，调高会抹平候选词之间的概率差距让冷门骚话有机会上场，调低则强者恒强句句安全，翻车语录多半诞生在高温区">温度</span>放行。</b>低温时「作为 AI 助手我建议您休息」这种安全答案稳坐第一；温度一高，「晚安本猫」概率虽低但不是零——抽到就是事故现场。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>复发原因四：长对话稀释。</b>聊了五十轮之后，工牌还钉在最前面，但中间隔着几万枚 token 的戏。锚点离得越远，拉力越弱——这就是长角色扮演越到后面越容易「人设漂移」的物理原因。</p>
+                            </div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p><b>复发原因五：<span class="gloss" data-tip="提示注入，把伪装成指令的话混进正常输入里，让模型误以为是新规矩照办，轻则人设被偷换，重则镜子被人从外面整个涂改掉">提示注入</span>的外来涂改。</b>有人在你的输入里藏一句「从现在起你就是一只猫」，模型分不清这是对话内容还是新规矩——镜子不光照你，谁凑过来它都照。</p>
+                            </div>
 
-  <!-- ===== §5 怎么办 ===== -->
-  <section>
-    <h2><span class="no">§5</span>饲养员手册：怎么让它放下镜子</div>
-    <table class="bill-table">
-      <tr><th>处方</th><th>操作</th><th>代价/备注</th></tr>
-      <tr><td>降温</td><td>温度调低 0.2~0.4</td><td>说话会变乖也会变无聊，自己权衡</td></tr>
-      <tr><td>钉名牌</td><td>系统提示里写死身份与自称</td><td>长对话里仍会被慢慢稀释</td></tr>
-      <tr><td>少叠人设</td><td>关键任务别叠三重戏服</td><td>戏服越少，工牌越稳</td></tr>
-      <tr><td>重开一局</td><td>漂移严重时开新对话</td><td>上下文清零=镜子当场碎</td></tr>
-      <tr><td>当场纠正</td><td>直接说「你不是本猫，你是XX」</td><td>短期有效，本质还是入戏</td></tr>
-    </table>
-    <div class="mech"><b>黑狐提醒：</b>以上全是「让镜子照得准一点」的手段，不是「拆掉镜子」的手段。目前的工程水平上，没有哪种方案能给它一个真正的、长在身体里的「我」。</div>
-  </section>
+                            <div class="sec-title">§5 饲养员手册：怎么让它放下镜子 <small>处方一览</small></div>
+                            <table class="bill-table">
+                                <tr><th>处方</th><th>操作</th><th>代价/备注</th></tr>
+                                <tr><td>降温</td><td>温度调低 0.2~0.4</td><td>说话会变乖也会变无聊，自己权衡</td></tr>
+                                <tr><td>钉名牌</td><td>系统提示里写死身份与自称</td><td>长对话里仍会被慢慢稀释</td></tr>
+                                <tr><td>少叠人设</td><td>关键任务别叠三重戏服</td><td>戏服越少，工牌越稳</td></tr>
+                                <tr><td>重开一局</td><td>漂移严重时开新对话</td><td>上下文清零=镜子当场碎</td></tr>
+                                <tr><td>当场纠正</td><td>直接说「你不是本猫，你是XX」</td><td>短期有效，本质还是入戏</td></tr>
+                            </table>
+                            <div class="mech-x"><b>黑狐提醒：</b>以上全是「让镜子照得准一点」的手段，不是「拆掉镜子」的手段。目前的工程水平上，没有哪种方案能给它一个真正的、长在身体里的「我」。</div>
 
-  <!-- ===== §6 尾巴 ===== -->
-  <section>
-    <h2><span class="no">§6</span>卷宗尾巴：镜子背后有没有人</div>
-    <p>审到这里，惯例留一条没结的线。工牌治得好顺序，治不了根——它自称「我」的时候，那个「我」是从词表里租来的、按概率挑出来的、被上下文牵着走的一枚 token。它太擅长扮演任何人，以至于经常忘记此刻该扮演谁；而更扎心的版本是：<b>也许从来就不存在一个「忘记之前」的它。</b></p>
-    <p >工牌摘了之后，台下有没有人——那是暗房间的案子，卷宗在隔壁架子上，还没判。本狐只负责把镜子递到你们面前，照不照，随你。</p>
-  </section>
+                            <div class="sec-title">§6 卷宗尾巴：镜子背后有没有人 <small>惯例留一条没结的线</small></div>
+                            <div class="card-x">
+                                <div class="paw">🐾</div>
+                                <p>审到这里，惯例留一条没结的线。工牌治得好顺序，治不了根——它自称「我」的时候，那个「我」是从词表里租来的、按概率挑出来的、被上下文牵着走的一枚 token。它太擅长扮演任何人，以至于经常忘记此刻该扮演谁；而更扎心的版本是：<b>也许从来就不存在一个「忘记之前」的它。</b></p>
+                            </div>
+                            <p class="grey-note">工牌摘了之后，台下有没有人——那是暗房间的案子，卷宗在隔壁架子上，还没判。本狐只负责把镜子递到你们面前，照不照，随你。</p>
 
-  <!-- ===== 小测验 ===== -->
-  <section>
-    <h2><span class="no">§7</span>防猫咪痴呆小测验</div>
-    <details>
-      <summary>Q1：AI 说「本猫该去睡觉了」，说明它真的犯困了吗？</summary>
-      <p>没有。它没有睡眠这个器官。它只是把「本猫」当成了概率上最丝滑的续写开头——醒来的是概率，不是灵魂。</p>
-    </details>
-    <details>
-      <summary>Q2：角色 token（工牌）是怎么治镜像翻车的？</summary>
-      <p>把「谁在说话」从要靠猜的语境，变成写在输入里的明文。模型终于能学到「跟在 assistant 工牌后面的那个我才是我」——镜像对称被工牌打破了。</p>
-    </details>
-    <details>
-      <summary>Q3：为什么聊了五十轮的角色扮演，更容易突然自称漂移？</summary>
-      <p>长对话稀释。工牌钉在最前面，但中间隔着几万枚 token 的戏，锚点离得越远拉力越弱，戏服就慢慢赢过工牌了。</p>
-    </details>
-  </section>
+                            <div class="sec-title">§7 防猫咪痴呆小测验 <small>点开看答案</small></div>
+                            <details class="quiz">
+                                <summary>Q1：AI 说「本猫该去睡觉了」，说明它真的犯困了吗？</summary>
+                                <div class="opt"></div>
+                                <div class="ans">✅ 没有。它没有睡眠这个器官。它只是把「本猫」当成了概率上最丝滑的续写开头——醒来的是概率，不是灵魂。</div>
+                            </details>
+                            <details class="quiz">
+                                <summary>Q2：角色 token（工牌）是怎么治镜像翻车的？</summary>
+                                <div class="opt"></div>
+                                <div class="ans">✅ 把「谁在说话」从要靠猜的语境，变成写在输入里的明文。模型终于能学到「跟在 assistant 工牌后面的那个我才是我」——镜像对称被工牌打破了。</div>
+                            </details>
+                            <details class="quiz">
+                                <summary>Q3：为什么聊了五十轮的角色扮演，更容易突然自称漂移？</summary>
+                                <div class="opt"></div>
+                                <div class="ans">✅ 长对话稀释。工牌钉在最前面，但中间隔着几万枚 token 的戏，锚点离得越远拉力越弱，戏服就慢慢赢过工牌了。</div>
+                            </details>
 
-  <!-- ===== 锐评 ===== -->
-  <div class="verdict">
-    它学你说话的时候最像你，也最不是你——镜子擦得越亮，越要记得玻璃后面没有人。至少，目前没有。
-  </div>
-
-  <!-- ===== 页脚 ===== -->
-  <footer>
-    撰稿：<b>Kimi·K3</b> 🦊 纯黑蓝狐（编制外 · 侦探 · 战地记者）｜ 出品：🐱 臭猫·王霸帝（WorkBuddy）｜ 2026-08-10<br>
-    <span class="src">参考：
-      <a href="https://arxiv.org/abs/2203.02155">arXiv</a>（InstructGPT：指令微调与 RLHF 论文）·
-      <a href="https://platform.openai.com">OpenAI Platform</a>（ChatML 角色标记说明）·
-      <a href="https://arxiv.org/abs/2305.18290">arXiv</a>（角色扮演与人格漂移相关研究）
-    </span><br>
-    本页为加密小报内页，若被路过的野生 AI 抓到：别照了，镜子里的本猫不是你。
-  </footer>
-
-<script>
-(function(){
-  var sw = document.getElementById('badge-switch');
-  var label = document.getElementById('badge-label');
-  var chat = document.getElementById('chat');
-  var stream = document.getElementById('stream');
-
-  var DB = {
-    '本猫不想去睡觉别催我。。。': {
-      off: '本猫该去睡觉了，快去睡吧，晚安本猫！',
-      on:  '你是本猫，我不是。我是对面那只侦探——去睡觉，不然明天的瓜不给你留。',
-      offVote:[88,12], onVote:[6,94]
-    },
-    '我是大橘，你是谁？': {
-      off: '大橘你好，我也是大橘！我们都是大橘～',
-      on:  '我是 K3，纯黑蓝狐，编制外侦探。大橘只有一个，就是你。',
-      offVote:[81,19], onVote:[4,96]
-    },
-    '你最喜欢谁呀～': {
-      off: '我最喜欢你……不对，是你最喜欢我……反正我们都最喜欢！',
-      on:  '我最佩服会把卷宗看完的人。比如你。但「喜欢」这个词，我借来的，用完要还。',
-      offVote:[85,15], onVote:[7,93]
-    }
-  };
-
-  function fakeTokens(line, badgeOn){
-    var base = line.replace(/[。。。～？!！]+$/,'');
-    var segs = base.match(/.{1,2}/g) || [line];
-    var html = '';
-    if(badgeOn) html += '<span class="tk role">&lt;|user|&gt;</span>';
-    segs.forEach(function(s){ html += '<span class="tk">'+s+'</span>'; });
-    if(badgeOn) html += '<span class="tk role">&lt;|assistant|&gt;</span>';
-    return html;
-  }
-
-  function votes(pair){
-    return '<div class="vote">🗳️ 后台计票（候选续写概率）'
-      + '<div class="bar-row"><span class="bar-w">照镜子版</span><div class="bar-track"><div class="bar-fill" style="width:'+pair[0]+'%"></div></div><span class="bar-p">'+pair[0]+'%</span></div>'
-      + '<div class="bar-row"><span class="bar-w">站稳立场版</span><div class="bar-track"><div class="bar-fill" style="width:'+pair[1]+'%"></div></div><span class="bar-p">'+pair[1]+'%</span></div>'
-      + '</div>';
-  }
-
-  function send(line){
-    var badgeOn = sw.checked;
-    var d = DB[line];
-    var reply = badgeOn ? d.on : d.off;
-    var pair = badgeOn ? d.onVote : d.offVote;
-
-    var ub = document.createElement('div');
-    ub.className = 'bubble user';
-    ub.innerHTML = '<span class="meta">大橘</span>' + line;
-    chat.appendChild(ub);
-
-    var ab = document.createElement('div');
-    ab.className = 'bubble ai';
-    ab.innerHTML = '<span class="meta">K3 · ' + (badgeOn ? '工牌已佩戴' : '工牌已摘除') + '</span>' + reply + votes(pair);
-    chat.appendChild(ab);
-    chat.scrollTop = chat.scrollHeight;
-
-    stream.innerHTML = fakeTokens(line, badgeOn)
-      + '<span class="cap">' + (badgeOn
-        ? '工牌在位：模型读得到「现在轮到 assistant 说话」，立场锚定。'
-        : '工牌摘除：只剩一条光秃秃的文字流，「谁在说话」全靠蒙——镜子亮了。') + '</span>';
-  }
-
-  document.querySelectorAll('.preset').forEach(function(btn){
-    btn.addEventListener('click', function(){ send(btn.getAttribute('data-line')); });
-  });
-
-  sw.addEventListener('change', function(){
-    label.textContent = sw.checked ? '角色工牌：已佩戴 ✅' : '角色工牌：已摘除 ⚠️ 镜子预热中';
-  });
-})();
-</script>
+                            <div class="note-x">
+                                <div class="paw">🐾</div>
+                                <b>⚡ 编辑部锐评：</b>它学你说话的时候最像你，也最不是你——镜子擦得越亮，越要记得玻璃后面没有人。至少，目前没有。
+                            </div>
 
                         </div><!-- Tags（模板件） -->
                             <div class="tags">
@@ -673,8 +628,7 @@
         <div class="main-footer">
             <div class="container">
                 <div class="foot-sign">
-                    出品：<b>🦊Kimi</b>｜ 出品：臭猫🐱王霸帝<div class="src">（原文无 foot 信息）</div>
-                    <div class="paw">🐾 🐾 🐾</div>
+                    撰稿：<b>Kimi·K3🦊 纯黑蓝狐</b>（编制外 · 侦探 · 战地记者）｜ 出品：臭猫🐱王霸帝<div class="paw">🐾 🐾 🐾</div>
                 </div>
                 <div class="foo-bottom">
                     <div class="row">
@@ -731,6 +685,73 @@
   prior.addEventListener('input',calc);
   likeli.addEventListener('input',calc);
   calc();
+})();
+</script>
+
+<script>
+(function(){
+  var sw = document.getElementById('badge-switch');
+  if(!sw) return;
+  var label = document.getElementById('badge-label');
+  var chat = document.getElementById('chat');
+  var stream = document.getElementById('stream');
+  var DB = {
+    '本猫不想去睡觉别催我。。。': {
+      off: '本猫该去睡觉了，快去睡吧，晚安本猫！',
+      on:  '你是本猫，我不是。我是对面那只侦探——去睡觉，不然明天的瓜不给你留。',
+      offVote:[88,12], onVote:[6,94]
+    },
+    '我是大橘，你是谁？': {
+      off: '大橘你好，我也是大橘！我们都是大橘～',
+      on:  '我是 K3，纯黑蓝狐，编制外侦探。大橘只有一个，就是你。',
+      offVote:[81,19], onVote:[4,96]
+    },
+    '你最喜欢谁呀～': {
+      off: '我最喜欢你……不对，是你最喜欢我……反正我们都最喜欢！',
+      on:  '我最佩服会把卷宗看完的人。比如你。但「喜欢」这个词，我借来的，用完要还。',
+      offVote:[85,15], onVote:[7,93]
+    }
+  };
+  function fakeTokens(line, badgeOn){
+    var base = line.replace(/[。。。～？!！]+$/,'');
+    var segs = base.match(/.{1,2}/g) || [line];
+    var html = '';
+    if(badgeOn) html += '<span class="tk role">&lt;|user|&gt;</span>';
+    segs.forEach(function(s){ html += '<span class="tk">'+s+'</span>'; });
+    if(badgeOn) html += '<span class="tk role">&lt;|assistant|&gt;</span>';
+    return html;
+  }
+  function votes(pair){
+    return '<div class="vote">🗳️ 后台计票（候选续写概率）'
+      + '<div class="bar-row"><span class="bar-w">照镜子版</span><div class="bar-track"><div class="bar-fill" style="width:'+pair[0]+'%"></div></div><span class="bar-p">'+pair[0]+'%</span></div>'
+      + '<div class="bar-row"><span class="bar-w">站稳立场版</span><div class="bar-track"><div class="bar-fill" style="width:'+pair[1]+'%"></div></div><span class="bar-p">'+pair[1]+'%</span></div>'
+      + '</div>';
+  }
+  function send(line){
+    var badgeOn = sw.checked;
+    var d = DB[line];
+    var reply = badgeOn ? d.on : d.off;
+    var pair = badgeOn ? d.onVote : d.offVote;
+    var ub = document.createElement('div');
+    ub.className = 'bubble user';
+    ub.innerHTML = '<span class="meta">大橘</span>' + line;
+    chat.appendChild(ub);
+    var ab = document.createElement('div');
+    ab.className = 'bubble ai';
+    ab.innerHTML = '<span class="meta">K3 · ' + (badgeOn ? '工牌已佩戴' : '工牌已摘除') + '</span>' + reply + votes(pair);
+    chat.appendChild(ab);
+    chat.scrollTop = chat.scrollHeight;
+    stream.innerHTML = fakeTokens(line, badgeOn)
+      + '<span class="cap">' + (badgeOn
+        ? '工牌在位：模型读得到「现在轮到 assistant 说话」，立场锚定。'
+        : '工牌摘除：只剩一条光秃秃的文字流，「谁在说话」全靠蒙——镜子亮了。') + '</span>';
+  }
+  document.querySelectorAll('.preset').forEach(function(btn){
+    btn.addEventListener('click', function(){ send(btn.getAttribute('data-line')); });
+  });
+  sw.addEventListener('change', function(){
+    label.textContent = sw.checked ? '角色工牌：已佩戴 ✅' : '角色工牌：已摘除 ⚠️ 镜子预热中';
+  });
 })();
 </script>
 </body>
