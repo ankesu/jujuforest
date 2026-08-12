@@ -10,7 +10,7 @@
 - **目标**：把「橘橘森林八卦小报」首页 + 文章内页，从原深色赛博风换成 NexaPress 模板亮色风。
 - **规格书**：`../NexaPress换皮规格.md`（大橘 08-10 21:19 钦定终版：H5 Hero + H5 作者榜 + H4 卡片 + H4 分类 + 纯亮色）。
 - **原站（只读！）**：`C:\Users\MIAMIA\WorkBuddy\八卦小报森林编辑部\` —— 可以读，**一个字节都不许改**。
-- **工作间**：`C:\Users\MIAMIA\WorkBuddy\猫猫捡来的包子\`，本工程文件夹为 `橘橘森林八卦小报\`（08-12 由「森林小报-NexaPress换皮」改名）。
+- **工作间**：`C:\Users\MIAMIA\WorkBuddy\八卦小报森林编辑部\`（08-12 从猫猫捡来的包子搬回工作空间），本工程文件夹为 `橘橘森林八卦小报\`（08-12 由「森林小报-NexaPress换皮」改名）。
 - **模板源**：`../html-NexaPress/`（home-page-4.html + home-page-5.html 混搭，standard-post.html 做内页）。
 - **素材**：`../图片/`（129 张 webp，已拷入本工程 `images/`）。
 
@@ -98,7 +98,7 @@ Kimi=fox_Kimi.webp  MiniMax=fox_MiniMax.webp  Qwen=fox_Qwen.webp  Doubao=fox_Dou
 
 ```bash
 # 必须用本地服务器（file:// 下 fetch .enc 会被 CORS 拦）
-"C:/Users/MIAMIA/.workbuddy/binaries/python/versions/3.13.12/python.exe" -m http.server 8964 --bind 127.0.0.1 --directory "C:/Users/MIAMIA/WorkBuddy/猫猫捡来的包子/橘橘森林八卦小报"
+"C:/Users/MIAMIA/.workbuddy/binaries/python/versions/3.13.12/python.exe" -m http.server 8964 --bind 127.0.0.1 --directory "C:/Users/MIAMIA/WorkBuddy/八卦小报森林编辑部/橘橘森林八卦小报"
 ```
 
 浏览器开 **http://127.0.0.1:8964/** → 输密码 `jujuForest66` → 解锁看全站。
@@ -204,10 +204,10 @@ function openArticle(a){
 
 ### 4.0-B 发布上线（已定稿 · 08-12 上线 ankesu.github.io/jujuforest）
 
-- **形态（方案 2 整页密文）**：v3明文/ 明文内页 → 路径修正（../xxx→xxx，srcdoc 基准=站点根）+ 注入返回按钮关闭阅读窗 JS → AES-256-GCM 整页加密 → 
-- **加密脚本**：（node 22 直跑，密码 jujuForest66，格式 {salt,iv,ct} 对齐原站）
-- **双轨探测回退**（openArticle）：fetch  存在→解密渲染（线上）；404→回退  整页跳转（本地）。一套代码两种行为，本地不生成整页密文照旧明文直开
-- **仓库**：新仓 （public，与原站 forest-gazette 独立）； 明文在 .gitignore 绝不 push（防裸奔）
+- **形态（方案 2 整页密文）**：v3明文/ 明文内页 → 路径修正（../xxx→xxx，srcdoc 基准=站点根）+ 注入返回按钮关闭阅读窗 JS → AES-256-GCM 整页加密 → `articles/aN.html.enc`
+- **加密脚本**：`tools/encrypt_fullpages.js`（node 22 直跑，密码 jujuForest66，格式 {salt,iv,ct} 对齐原站；08-12 起收进 tools/，ROOT=工程根）
+- **双轨探测回退**（openArticle）：fetch `articles/aN.html.enc` 存在→解密渲染（线上）；404→回退 `v3明文/aN.html` 整页跳转（本地）。一套代码两种行为，本地不生成整页密文照旧明文直开
+- **仓库**：新仓 `ankesu/jujuforest`（public，与原站 forest-gazette 独立，原站 08-12 已删）；`v3明文/` 明文在 .gitignore 绝不 push（防裸奔）
 - **部署**：.nojekyll + .github/workflows/pages.yml（main 分支 Actions 部署）；push 走代理 7890（直连被墙）
 - **线上地址**：https://ankesu.github.io/jujuforest/ （密码 jujuForest66）
 
