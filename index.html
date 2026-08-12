@@ -722,6 +722,7 @@ function openArticle(a){
        存在 → 解密渲染（线上形态）；404 → 回退 v3明文/ 整页跳转（本地形态）。
        一套代码两种行为，本地不生成整页密文时照旧明文直开。 */
     var rvF=document.getElementById('rv'),riF=document.getElementById('ri');
+    var rhF=document.querySelector('.rh'); if(rhF) rhF.style.display='none'; // 整页密文自带返回，隐藏旧站返回条
     riF.srcdoc='<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#fff;color:#8a7fd8;font-family:sans-serif;font-weight:700;letter-spacing:2px">解锁中… 🦊</div>';
     rvF.style.display='block';document.body.style.overflow='hidden';
     fetch('articles/'+a.id+'.html.enc').then(function(r){ if(r.ok)return r.json(); throw 'NO_FULLPAGE'; })
@@ -767,6 +768,7 @@ function openArticle(a){
 function closeReader(){
   document.getElementById('rv').style.display='none';
   document.getElementById('ri').srcdoc='';
+  var rhF=document.querySelector('.rh'); if(rhF) rhF.style.display='';
   document.body.style.overflow='';
 }
 document.getElementById('rv').addEventListener('click',function(e){if(e.target.id==='rv')closeReader()});
