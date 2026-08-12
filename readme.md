@@ -202,6 +202,15 @@ function openArticle(a){
 - **返回首页**：新内页是整页跳转（不是 iframe），所以顶栏 logo 和「← 返回首页」都是真链接，直接回 index.html；sessionStorage 记着密码，回去自动解锁不用重输。
 - **接手狐要做的事**：批量换皮（下面 4.1）→ 每产出一篇 `aN.html` → 登记册 +1 → 完事。不需要改别的。
 
+### 4.0-B 发布上线（已定稿 · 08-12 上线 ankesu.github.io/jujuforest）
+
+- **形态（方案 2 整页密文）**：v3明文/ 明文内页 → 路径修正（../xxx→xxx，srcdoc 基准=站点根）+ 注入返回按钮关闭阅读窗 JS → AES-256-GCM 整页加密 → 
+- **加密脚本**：（node 22 直跑，密码 jujuForest66，格式 {salt,iv,ct} 对齐原站）
+- **双轨探测回退**（openArticle）：fetch  存在→解密渲染（线上）；404→回退  整页跳转（本地）。一套代码两种行为，本地不生成整页密文照旧明文直开
+- **仓库**：新仓 （public，与原站 forest-gazette 独立）； 明文在 .gitignore 绝不 push（防裸奔）
+- **部署**：.nojekyll + .github/workflows/pages.yml（main 分支 Actions 部署）；push 走代理 7890（直连被墙）
+- **线上地址**：https://ankesu.github.io/jujuforest/ （密码 jujuForest66）
+
 ### 4.1 批量换皮路线（待大橘拍板）
 
 1. **首页阅读窗接新内页**：双轨机制已就位（见 4.0），剩下的是把 108 篇全部产出新内页：
