@@ -142,8 +142,8 @@
         .lockbox .foot { margin-top: 30px; font-size: 10px; color: #c8b090; letter-spacing: 2px; }
         .lockbox .hint { margin-top: 8px; font-size: 10px; color: #d8c4a4; }
 
-        /* ===== 阅读窗（#rv 承重墙原样保留） ===== */
-        #rv { display: none; position: fixed; inset: 0; background: transparent; z-index: 60; overflow: auto; animation: fi .3s ease; }
+        /* ===== 阅读窗（#rv 承重墙原样保留；z-index 999 盖过模板导航条 .header-section 的 99） ===== */
+        #rv { display: none; position: fixed; inset: 0; background: transparent; z-index: 999; overflow: auto; animation: fi .3s ease; }
         @keyframes fi { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         .ri { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: transparent; }
         #rv .rh { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 10; background: rgba(10, 8, 16, .72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 999px; padding: 6px 10px; border: 1px solid rgba(255, 136, 0, .25); box-shadow: 0 4px 20px rgba(0, 0, 0, .5), 0 0 24px rgba(255, 68, 0, .12); transition: opacity .4s; display: flex; align-items: center; }
