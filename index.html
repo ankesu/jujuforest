@@ -96,17 +96,22 @@
         .blog-cards .blog-content p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .blog-cards .blog-content h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* 卡片期号角标（左下角，不碰分类徽章） */
+        /* 卡片期号角标（左上角，与分类徽章互换） */
         .blog-cards .card-no {
-            position: absolute; bottom: 14px; left: 14px; z-index: 2;
+            position: absolute; top: 14px; left: 14px; z-index: 2;
             display: inline-flex; align-items: center;
-            background: rgba(15, 15, 30, 0.55);
+            background: rgba(45, 50, 70, 0.38);
             color: #fff; font-size: 12px; font-weight: 700;
             font-family: Consolas, Menlo, monospace;
             padding: 4px 11px; border-radius: 50px;
             letter-spacing: 0.5px;
             backdrop-filter: blur(4px);
             box-shadow: 0 2px 8px rgba(0,0,0,.18);
+        }
+
+        /* 分类徽章：与期号角标互换 → 左下角（覆盖模板 style-4 的左上定位） */
+        .blog-section.style-4 .blog-cards .category {
+            position: absolute; top: auto; bottom: 12px; left: 12px;
         }
 
         /* 筛选栏（亮色药丸） */
@@ -710,9 +715,24 @@ function makeCard(a,flip){
 /* ===== 阅读窗（承重墙原样保留） ===== */
 /* 已换皮内页登记册：有独立新内页的文章整页跳转（v3明文/ 目录），其余走旧 iframe 解密阅读窗。
    批量换皮时每完成一篇就把 id 加进来（文件名 = id + '.html'，存于 v3明文/）。 */
-var NEW_INNER_PAGES = {a108:1,a107:1,a106:1,a105:1,a104:1,a103:1,a102:1,a101:1,a100:1,a99:1,a98:1,a97:1,a96:1,a95:1,a94:1,a93:1,a92:1,a91:1,a90:1,a89:1,a88:1,a87:1,a86:1,a85:1,a84:1,a83:1,a82:1,a81:1,a80:1,a79:1,a78:1,a77:1,a76:1,a75:1,a74:1,a73:1,a72:1,a71:1,a70:1,a69:1,a68:1,a67:1,a66:1,a65:1,a64:1,a63:1,a62:1,a61:1,a60:1,a59:1,a58:1,a57:1,a56:1,a55:1,a54:1,a53:1,a52:1,a51:1,a50:1,a49:1,a48:1,a47:1,a46:1,a45:1,a44:1,a43:1,a42:1,a41:1,a40:1,a39:1,a38:1,a37:1,a36:1,a35:1,a34:1,a33:1,a32:1,a31:1,a30:1,a29:1,a28:1,a27:1,a26:1,a25:1,a24:1,a20:1,a21:1,a22:1,a23:1};
+var NEW_INNER_PAGES = {a108:1,a107:1,a106:1,a105:1,a104:1,a103:1,a102:1,a101:1,a100:1,a99:1,a98:1,a97:1,a96:1,a95:1,a94:1,a93:1,a92:1,a91:1,a90:1,a89:1,a88:1,a87:1,a86:1,a85:1,a84:1,a83:1,a82:1,a81:1,a80:1,a79:1,a78:1,a77:1,a76:1,a75:1,a74:1,a73:1,a72:1,a71:1,a70:1,a69:1,a68:1,a67:1,a66:1,a65:1,a64:1,a63:1,a62:1,a61:1,a60:1,a59:1,a58:1,a57:1,a56:1,a55:1,a54:1,a53:1,a52:1,a51:1,a50:1,a49:1,a48:1,a47:1,a46:1,a45:1,a44:1,a43:1,a42:1,a41:1,a40:1,a39:1,a38:1,a37:1,a36:1,a35:1,a34:1,a33:1,a32:1,a31:1,a30:1,a29:1,a28:1,a27:1,a26:1,a25:1,a24:1,a1:1,a2:1,a3:1,a4:1,a5:1,a6:1,a7:1,a8:1,a9:1,a10:1,a11:1,a12:1,a13:1,a14:1,a15:1,a16:1,a17:1,a18:1,a19:1,a20:1,a21:1,a22:1,a23:1};
 function openArticle(a){
-  if(NEW_INNER_PAGES[a.id]){ window.location.href='v3明文/'+a.id+'.html'; return; }
+  if(NEW_INNER_PAGES[a.id]){
+    /* 双轨（08-12 定稿）：已换皮文章优先探测「整页密文 articles/aN.html.enc」
+       存在 → 解密渲染（线上形态）；404 → 回退 v3明文/ 整页跳转（本地形态）。
+       一套代码两种行为，本地不生成整页密文时照旧明文直开。 */
+    var rvF=document.getElementById('rv'),riF=document.getElementById('ri');
+    riF.srcdoc='<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#fff;color:#8a7fd8;font-family:sans-serif;font-weight:700;letter-spacing:2px">解锁中… 🦊</div>';
+    rvF.style.display='block';document.body.style.overflow='hidden';
+    fetch('articles/'+a.id+'.html.enc').then(function(r){ if(r.ok)return r.json(); throw 'NO_FULLPAGE'; })
+      .then(function(payload){ return decJSON({pwd:sessionStorage.getItem('julu_pwd'),salt:payload.salt,iv:payload.iv,ct:payload.ct}); })
+      .then(function(html){ riF.srcdoc=html; setTimeout(function(){document.querySelector('.rh').classList.add('collapse')},3000); })
+      .catch(function(e){
+        if(e==='NO_FULLPAGE'){ window.location.href='v3明文/'+a.id+'.html'; return; }
+        riF.srcdoc='<div style="text-align:center;padding:40px;color:#ff6655">❌ 解密失败</div>';
+      });
+    return;
+  }
   var rv=document.getElementById('rv'),ri=document.getElementById('ri');
   ri.srcdoc='<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'+
     'body{margin:0;min-height:100vh;background:#0a0a0f;display:flex;align-items:center;justify-content:center;font-family:"PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden}'+

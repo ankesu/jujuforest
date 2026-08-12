@@ -1,0 +1,7 @@
+# 明文源文件（绝不进 git / push 线上，防裸奔——换皮上线走整页密文 articles/aN.html.enc）
+v3明文/
+# 本地缓存与临时
+node_modules/
+*.log
+Thumbs.db
+.DS_Store

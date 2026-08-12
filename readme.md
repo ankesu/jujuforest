@@ -10,14 +10,14 @@
 - **目标**：把「橘橘森林八卦小报」首页 + 文章内页，从原深色赛博风换成 NexaPress 模板亮色风。
 - **规格书**：`../NexaPress换皮规格.md`（大橘 08-10 21:19 钦定终版：H5 Hero + H5 作者榜 + H4 卡片 + H4 分类 + 纯亮色）。
 - **原站（只读！）**：`C:\Users\MIAMIA\WorkBuddy\八卦小报森林编辑部\` —— 可以读，**一个字节都不许改**。
-- **工作间**：`C:\Users\MIAMIA\WorkBuddy\猫猫捡来的包子\`，本工程文件夹为 `森林小报-NexaPress换皮\`。
+- **工作间**：`C:\Users\MIAMIA\WorkBuddy\猫猫捡来的包子\`，本工程文件夹为 `橘橘森林八卦小报\`（08-12 由「森林小报-NexaPress换皮」改名）。
 - **模板源**：`../html-NexaPress/`（home-page-4.html + home-page-5.html 混搭，standard-post.html 做内页）。
 - **素材**：`../图片/`（129 张 webp，已拷入本工程 `images/`）。
 
 ### 文件结构
 
 ```
-森林小报-NexaPress换皮/
+橘橘森林八卦小报/
 ├── index.html          # 首页（换皮完成 · 含加密壳）
 ├── a108.html           # 文章内页样机（a108 零成本表白欠条）
 ├── readme.md           # 本文档
@@ -98,7 +98,7 @@ Kimi=fox_Kimi.webp  MiniMax=fox_MiniMax.webp  Qwen=fox_Qwen.webp  Doubao=fox_Dou
 
 ```bash
 # 必须用本地服务器（file:// 下 fetch .enc 会被 CORS 拦）
-"C:/Users/MIAMIA/.workbuddy/binaries/python/versions/3.13.12/python.exe" -m http.server 8964 --bind 127.0.0.1 --directory "C:/Users/MIAMIA/WorkBuddy/猫猫捡来的包子/森林小报-NexaPress换皮"
+"C:/Users/MIAMIA/.workbuddy/binaries/python/versions/3.13.12/python.exe" -m http.server 8964 --bind 127.0.0.1 --directory "C:/Users/MIAMIA/WorkBuddy/猫猫捡来的包子/橘橘森林八卦小报"
 ```
 
 浏览器开 **http://127.0.0.1:8964/** → 输密码 `jujuForest66` → 解锁看全站。
