@@ -54,7 +54,9 @@
         .header-section .mega-menu .mega-item::after { background: transparent; }
 
         /* 今日新文三栏：确定性等高（story 510 / trending 510 / 双卡 247+247） */
-        #storyCardMount .story-card .strory-img-slid { height: 100%; object-fit: cover; }
+        /* story-card 圆角归容器管（radius+overflow+isolation 三件套，修复 hover 放大时图片合成层逃逸裁切变直角） */
+        #storyCardMount .story-card { border-radius: 30px; overflow: hidden; isolation: isolate; }
+        #storyCardMount .story-card .strory-img-slid { height: 100%; object-fit: cover; border-radius: 0; }
         .new-today .trending-post { height: 100%; display: flex; flex-direction: column; justify-content: space-evenly; }
         .new-today .trending-post .border-bottom-row { flex: 1; min-height: 0; margin-bottom: 12px; }
         .new-today .trending-post .border-bottom-row:last-child { margin-bottom: 0; }
@@ -62,9 +64,9 @@
         #newTodayMount .new-today-blog-card { flex: 1; margin-bottom: 0; }
         #newTodayMount .today-blog-card-image,
         #newTodayMount .today-blog-card-image img { height: 100%; }
-        /* Trending 方图 = 文章横卡裁方（提权压过模板 luminosity 混合；border-radius:0 防 hover 缩回露容器深色黑边） */
-        .explore-category.style-5 .new-today .trending-post-thum { overflow: hidden; width: 120px; height: 120px; flex-shrink: 0; align-self: center; }
-        .explore-category.style-5 .new-today .trending-post-thum img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal; display: block; border-radius: 0; }
+        /* Trending 方图 = 文章横卡裁方（提权压过模板 luminosity 混合；img 绝对定位无缝填满 + 容器透明） */
+        .explore-category.style-5 .new-today .trending-post-thum { position: relative; overflow: hidden; width: 120px; height: 120px; flex-shrink: 0; align-self: center; background: transparent; }
+        .explore-category.style-5 .new-today .trending-post-thum img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal; display: block; border-radius: 0; }
         .story-card .story-overlay h3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .new-today .trending-post-right h4, .new-today .trending-post-right h5 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .new-today-blog-card .blog-title h5 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -72,13 +74,11 @@
             .new-today .row.fade-animation { align-items: stretch; }
             #storyCardMount .story-card { height: 510px; }
             /* whatsnew 三栏 hover 图放大统一（08-13 大橘：右栏有左中栏没有） */
-            #storyCardMount .story-card { overflow: hidden; }
             /* 筛选滚动锚点偏移：fixed 顶栏盖住结果区「✕ 清除筛选」（08-13 大橘报） */
             #cardsSection { scroll-margin-top: 70px; }
-            #storyCardMount .story-card .strory-img-slid { transition: transform .35s ease; }
-            #storyCardMount .story-card:hover .strory-img-slid { transform: scale(1.05); }
-            .new-today .trending-post .border-bottom-row .trending-post-thum img { transition: transform .35s ease; }
-            .new-today .trending-post .border-bottom-row:hover .trending-post-thum img { transform: scale(1.05); }
+            #storyCardMount .story-card .strory-img-slid { transition: transform .35s ease; transform: translateZ(0); }
+            #storyCardMount .story-card:hover .strory-img-slid { transform: scale(1.05) translateZ(0); }
+            /* 中栏 trending hover 已关闭（08-13 大橘拍板：黑边/末帧抖修三轮未根治，直接关掉，静态更干净） */
             .new-today .trending-post,
             #newTodayMount { height: 510px; }
         }
