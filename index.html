@@ -45,15 +45,15 @@
         /* Hero 白卡标题可点 */
         .hero-section.style-5 .slider-card .card-txt p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .hero-section.style-5 .slider-card .card-txt h2 { cursor: pointer; }
-        /* Hero 裁图后定位（!important 防 main.css 覆盖；3440 全屏基准：放大 1.33 倍 + 左移 120px + 窗口上移 35% 露猫脸，08-13 大橘 3440×1440 屏钦定） */
+        /* Hero 裁图后定位（视口自适应版：百分比基准，任何视口比例一致；放大 148.4% ≈ 1.48x、左移 3.5%、窗口上移 35% 露猫脸，08-13 大橘 3440 屏） */
         .hero-section.style-5 .hero-bg-img {
             position: absolute !important;
             z-index: -1 !important;
-            width: calc(100% + 1664px) !important;
+            width: 148.4% !important;
             height: 100% !important;
             object-fit: cover !important;
             object-position: center 35% !important;
-            left: -120px !important;
+            left: -3.5% !important;
             top: 0 !important;
         }
 
