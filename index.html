@@ -45,17 +45,9 @@
         /* Hero 白卡标题可点 */
         .hero-section.style-5 .slider-card .card-txt p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .hero-section.style-5 .slider-card .card-txt h2 { cursor: pointer; }
-        /* Hero 裁图后定位（视口自适应：放大 200% 一次到位推白边出视口、左移 3.5%、窗口上移 35% 露猫脸，08-13 大橘 3440 屏） */
-        .hero-section.style-5 .hero-bg-img {
-            position: absolute !important;
-            z-index: -1 !important;
-            width: 200% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            object-position: center 35% !important;
-            left: -3.5% !important;
-            top: 0 !important;
-        }
+        /* Hero 背景定稿（08-13 23:36 大橘逐 px 调校）：真 4K 原图 hero_bg.webp（materials__Swimming Cat.png 转 webp q95），scale(1.2) + left -230px + top 80px + object-position center 40%，section overflow:hidden 防白边 */
+        .hero-section.style-5 { overflow: hidden; }
+        .hero-section.style-5 .hero-bg-img { width: 100%; height: 100%; left: -230px; top: 80px; object-position: center 40%; transform: scale(1.2); }
 
         /* 顶栏 mega 菜单猫图防压扁（模板缺 object-fit） */
         .header-section .mega-img img { object-fit: cover; object-position: center 15%; }
@@ -276,7 +268,7 @@
         <!-- Hero Section（H5 style-5 · Swimming Cat 大图 + 最新5篇轮播） -->
         <section class="hero-section style-5">
             <h1 class="visually-hidden">橘橘森林八卦小报</h1>
-            <img class="hero-bg-img" src="images/hero_bg_4k.webp" alt="banner">
+            <img class="hero-bg-img" src="images/hero_bg.webp" alt="banner">
             <div class="container">
                 <div class="row">
                     <div class="col-xxl-5 offset-xxl-7 col-lg-7 offset-lg-5">
