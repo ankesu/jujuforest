@@ -50,6 +50,8 @@
 
         /* 顶栏 mega 菜单猫图防压扁（模板缺 object-fit） */
         .header-section .mega-img img { object-fit: cover; object-position: center 15%; }
+        /* 分类 mega 图去蒙版（08-13 大橘：白卡黑字自给自足，黑渐变纯装饰） */
+        .header-section .mega-menu .mega-item::after { background: transparent; }
 
         /* 今日新文三栏：确定性等高（story 510 / trending 510 / 双卡 247+247） */
         #storyCardMount .story-card .strory-img-slid { height: 100%; object-fit: cover; }
@@ -530,7 +532,9 @@ function renderAuthors(){
 
 /* ===== 渲染：今日新文三栏（左大卡 + 中 Trending + 右双分类卡） ===== */
 function renderNewToday(sorted){
-  // 左：story-card 大卡 = 最新一篇（hero 3 篇之外）
+  // 轮换状态（08-13 大橘：自动换新；sessionStorage 记轮次，每 6 小时 +1 由定时器触发）
+  var R=parseInt(sessionStorage.getItem('wn_round')||'0',10);
+  // 左：story-card 大卡 = 最新第 4 篇（固定规则，非抽签）
   var story=sorted[3];
   if(story){
     document.getElementById('storyCardMount').innerHTML=
@@ -546,14 +550,17 @@ function renderNewToday(sorted){
         '</div>'+
       '</div>';
   }
+  // 已用集合：Hero 前 3 + 左大卡（全区域去重，杜绝一篇两吃）
+  var used={};sorted.slice(0,4).forEach(function(a){used[a.id]=1});
 
-  // 中：Trending 权重榜（red>orange>pink>其他，同类按日期，取3篇）
-  var W={red:0,orange:1,pink:2};
-  var ranked=sorted.slice().sort(function(x,y){
-    var wx=(W[x.bc]!==undefined?W[x.bc]:3), wy=(W[y.bc]!==undefined?W[y.bc]:3);
-    return wx-wy||dateKey(y)-dateKey(x)||idNum(y)-idNum(x);
-  }).slice(0,3);
-  document.getElementById('trendingMount').innerHTML=ranked.map(function(a,i){
+  // 中：审讯室/论文/花边 各 1 篇（去权重；候选池按日期倒序，轮换指针取）
+  var midBC=['red','purple','pink'];
+  var mid=[];
+  midBC.forEach(function(bc){
+    var pool=sorted.filter(function(a){return a.bc===bc&&!used[a.id]});
+    if(pool.length){var pick=pool[R%pool.length];mid.push(pick);used[pick.id]=1;}
+  });
+  document.getElementById('trendingMount').innerHTML=mid.map(function(a,i){
     var dp=a.date.split(' ');
     return '<div class="border-bottom-row" onclick="openById(\''+a.id+'\')">'+
       '<div class="right-side">'+
@@ -570,16 +577,19 @@ function renderNewToday(sorted){
     '</div>';
   }).join('');
 
-  // 右：最新一天更新最多的两个分类，各取一篇（格式一致的双横卡）
+  // 右：最新一天 top2 分类，类内候选池轮换（排除左中已用）
   var latestDay=sorted[0].date.split(' ')[0];
   var dayArts=sorted.filter(function(a){return a.date.split(' ')[0]===latestDay});
   var cnt={};dayArts.forEach(function(a){cnt[a.bc]=(cnt[a.bc]||0)+1});
   var top2bc=Object.keys(cnt).sort(function(x,y){return cnt[y]-cnt[x]}).slice(0,2);
-  var used={};sorted.slice(0,4).forEach(function(a){used[a.id]=1});
   var picks=[];
   top2bc.forEach(function(bc){
-    var cand=dayArts.find(function(a){return a.bc===bc&&!used[a.id]})||dayArts.find(function(a){return a.bc===bc});
-    if(cand&&!picks.some(function(p){return p.id===cand.id})){picks.push(cand);used[cand.id]=1}
+    var pool=sorted.filter(function(a){return a.bc===bc&&!used[a.id]});
+    if(!pool.length) pool=sorted.filter(function(a){return a.bc===bc});
+    if(pool.length){
+      var cand=pool[R%pool.length];
+      if(!picks.some(function(p){return p.id===cand.id})){picks.push(cand);used[cand.id]=1;}
+    }
   });
   document.getElementById('newTodayMount').innerHTML=picks.map(function(a){
     var dp=a.date.split(' ');
@@ -606,7 +616,7 @@ function renderNewToday(sorted){
   }).join('');
 }
 
-/* ===== 渲染：Explore by Category（9猫） ===== */
+/* ===== 渲染：Explore by Category/* ===== 渲染：Explore by Category（9猫） ===== */
 function renderCategories(){
   var counts=countBy(function(a){return a.bc});
   document.getElementById('catCards').innerHTML=BC_ORDER.map(function(bc){
@@ -778,6 +788,12 @@ window.addEventListener('keydown',function(e){if(e.key==='Escape')closeReader()}
 function renderAll(){
   var sorted=sortedArticles();
   document.getElementById('footCount').textContent=ARTICLES.length;
+  // 定时轮换（08-13 大橘：每 6 小时 whatsnew 自动换新）
+  if(!window._wnTimer){ window._wnTimer=setInterval(function(){
+    var R=parseInt(sessionStorage.getItem('wn_round')||'0',10)+1;
+    sessionStorage.setItem('wn_round',R);
+    renderNewToday(sortedArticles());
+  },6*60*60*1000);}
   renderHero(sorted);
   renderAuthors();
   renderNewToday(sorted);
