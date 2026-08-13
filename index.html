@@ -71,6 +71,14 @@
         @media (min-width: 1200px) {
             .new-today .row.fade-animation { align-items: stretch; }
             #storyCardMount .story-card { height: 510px; }
+            /* whatsnew 三栏 hover 图放大统一（08-13 大橘：右栏有左中栏没有） */
+            #storyCardMount .story-card { overflow: hidden; }
+            /* 筛选滚动锚点偏移：fixed 顶栏盖住结果区「✕ 清除筛选」（08-13 大橘报） */
+            #cardsSection { scroll-margin-top: 70px; }
+            #storyCardMount .story-card .strory-img-slid { transition: transform .35s ease; }
+            #storyCardMount .story-card:hover .strory-img-slid { transform: scale(1.05); }
+            .new-today .trending-post .border-bottom-row .trending-post-thum img { transition: transform .35s ease; }
+            .new-today .trending-post .border-bottom-row:hover .trending-post-thum img { transform: scale(1.05); }
             .new-today .trending-post,
             #newTodayMount { height: 510px; }
         }
