@@ -45,9 +45,9 @@
         /* Hero 白卡标题可点 */
         .hero-section.style-5 .slider-card .card-txt p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .hero-section.style-5 .slider-card .card-txt h2 { cursor: pointer; }
-        /* Hero 背景定稿（08-13 23:36 大橘逐 px 调校）：真 4K 原图 hero_bg.webp（materials__Swimming Cat.png 转 webp q95），scale(1.2) + left -230px + top 80px + object-position center 40%，section overflow:hidden 防白边 */
+        /* Hero 背景定稿（08-13 23:36 大橘逐 px 调校 + 08-15 微调）：真 4K 原图 hero_bg.webp（materials__Swimming Cat.png 转 webp q95）。08-15：scale 1.2→1.23 修全屏右侧细白边；left -230px→max(-230px,-10%) 修窄屏露白（全屏≥2300px 时保持原调校值，窄屏自动切 -10% 恒铺满），top 80px + object-position center 40% + section overflow:hidden 未动。备份：index.html.bak（08-15 前原始版）/ index.html.bak2（1.23 固定 left 版） */
         .hero-section.style-5 { overflow: hidden; }
-        .hero-section.style-5 .hero-bg-img { width: 100%; height: 100%; left: -230px; top: 80px; object-position: center 40%; transform: scale(1.2); }
+        .hero-section.style-5 .hero-bg-img { width: 100%; height: 100%; left: max(-230px, -10%); top: 80px; object-position: center 40%; transform: scale(1.23); }
 
         /* 顶栏 mega 菜单猫图防压扁（模板缺 object-fit） */
         .header-section .mega-img img { object-fit: cover; object-position: center 15%; }
