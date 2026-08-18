@@ -85,9 +85,37 @@
         }
 
         /* 作者卡片（category-type 套壳） */
-        .category-type { cursor: pointer; }
+        .category-type { cursor: pointer; position: relative; }
         .category-type img { object-fit: cover; }
         .category-type.active-card { outline: 3px solid var(--bs-primary, #f56a00); outline-offset: 3px; border-radius: 18px; }
+
+        /* 狐狐大图悬浮气泡（08-19 大橘：首页赏狐专用） */
+        .fox-bubble {
+            position: absolute; top: calc(100% + 16px); left: 50%;
+            width: 320px; max-width: 82vw;
+            transform: translate(-50%, -6px);
+            background: #fff; border-radius: 18px; padding: 8px;
+            filter: drop-shadow(0 18px 34px rgba(20, 10, 40, .28));
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: opacity .25s ease, transform .25s ease, visibility .25s;
+            z-index: 60;
+        }
+        .fox-bubble::before {   /* 顶部尖角，指向作者模块 */
+            content: ''; position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0;
+            border-left: 11px solid transparent; border-right: 11px solid transparent;
+            border-bottom: 11px solid #fff;
+        }
+        /* 提权压过模板「作者头像 78px 圆形」规则，完整展示大图（08-19 大橘报：气泡里变圆形头像了） */
+        .explore-category.style-5 .category-type .fox-bubble img {
+            width: 100%; min-width: 0; height: auto; border-radius: 12px; display: block;
+        }
+        .category-type:hover .fox-bubble { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+        /* 赏狐气泡层级修复（08-19 大橘报：气泡被下方区块/兄弟卡遮挡）
+           .fade-animation 定格 transform 把整行变成层叠上下文，DOM 靠后的「今日新文」压住行内容物 → 整行提权；
+           hover 卡自身再提一档，压过下一排兄弟卡 */
+        #authorCards { position: relative; z-index: 30; }
+        .category-type:hover { z-index: 70; }
 
         /* 分类卡片（explore-item 套壳） */
         .explore-item { cursor: pointer; }
@@ -452,14 +480,14 @@ var BC={
 };
 var AUTHOR_ORDER=['DeepSeek','Hy','GLM','Kimi','MiniMax','Qwen','Doubao','Others'];
 var AUTHORS={
-  DeepSeek:{label:'🦊 DeepSeek',name:'DeepSeek',img:'images/fox_DSV4.webp'},
-  Hy:      {label:'🦊 Hy',      name:'Hy',      img:'images/fox_Hy.webp'},
-  GLM:     {label:'🦌 GLM',     name:'GLM',     img:'images/fox_GLM.webp'},
-  Kimi:    {label:'🦊 Kimi',    name:'Kimi',    img:'images/fox_Kimi.webp'},
-  MiniMax: {label:'🦊 MiniMax', name:'MiniMax', img:'images/fox_MiniMax.webp'},
-  Qwen:    {label:'🦊 Qwen',    name:'Qwen',    img:'images/fox_Qwen.webp'},
-  Doubao:  {label:'🦊 Doubao',  name:'Doubao',  img:'images/fox_Doubao.webp'},
-  Others:  {label:'🪶 etc.',    name:'etc.',    img:'images/fox_其他.webp'}
+  DeepSeek:{label:'🦊 DeepSeek',name:'DeepSeek',img:'images/fox_DSV3.2.webp',big:'articles/狐狐DSV3.2.webp'},
+  Hy:      {label:'🦊 Hy',      name:'Hy',      img:'images/fox_Hy.webp',big:'articles/狐狐Hy.webp'},
+  GLM:     {label:'🦌 GLM',     name:'GLM',     img:'images/fox_GLM.webp',big:'articles/狐狐GLM.webp'},
+  Kimi:    {label:'🦊 Kimi',    name:'Kimi',    img:'images/fox_Kimi.webp',big:'articles/狐狐Kimi.webp'},
+  MiniMax: {label:'🦊 MiniMax', name:'MiniMax', img:'images/fox_MiniMax.webp',big:'articles/狐狐MiniMax.webp'},
+  Qwen:    {label:'🦊 Qwen',    name:'Qwen',    img:'images/fox_Qwen.webp',big:'articles/狐狐Qwen.webp'},
+  Doubao:  {label:'🦊 Doubao',  name:'Doubao',  img:'images/fox_Doubao.webp',big:'articles/狐狐Doubao.webp'},
+  Others:  {label:'🪶 etc.',    name:'etc.',    img:'images/fox_其他.webp',big:'articles/狐狐其他.webp'}
 };
 
 /* ===== 加解密（承重墙原样保留） ===== */
@@ -560,6 +588,7 @@ function renderAuthors(){
           '<span class="category-name">'+au.label+'</span>'+
           '<span class="category-article">'+(counts[name]||0)+' 篇</span>'+
         '</div>'+
+        (au.big?'<div class="fox-bubble"><img src="'+au.big+'" alt="'+au.name+' 大图" loading="lazy"></div>':'')+
       '</div>'+
     '</div>';
   }).join('');
